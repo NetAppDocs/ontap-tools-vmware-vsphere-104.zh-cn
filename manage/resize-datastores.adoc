@@ -1,0 +1,25 @@
+---
+permalink: manage/resize-datastores.html 
+sidebar: sidebar 
+keywords:  
+summary: 调整数据存储的大小可以增加虚拟机文件的存储空间。您可以根据基础设施需求的变化来更改数据存储的大小。 
+---
+= 调整 NFS 和 VMFS 数据存储的大小
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+调整数据存储的大小可以增加虚拟机文件的存储空间。您可以根据基础设施需求的变化来更改数据存储的大小。
+
+*关于此任务*
+
+您只能增加 NFS 和 VMFS 数据存储的大小。作为 NFS 和 VMFS 数据存储的一部分的FlexVol volume不能缩小到现有大小以下，但最多可以增长 120%。
+
+.步骤
+. 从 vSphere Client 主页中，选择“主机和集群”。
+. 在导航窗格中，选择包含数据存储区的数据中心。
+. 右键单击 NFS 或 VMFS 数据存储，然后选择 * NetApp ONTAP工具* > *调整数据存储大小*。
+. 在“调整大小”对话框中，指定数据存储的新大小并选择“确定”。
+

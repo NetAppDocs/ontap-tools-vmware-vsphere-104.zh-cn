@@ -1,0 +1,24 @@
+---
+permalink: manage/add-ntpserver.html 
+sidebar: sidebar 
+keywords:  
+summary: 输入 NTP 服务器详细信息以同步ONTAP工具设备的时间时钟。 
+---
+= 添加 NTP 服务器
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+输入 NTP 服务器详细信息以同步ONTAP工具设备的时间时钟。
+
+.步骤
+. 从 Web 浏览器启动ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 选择*设置* > *NTP 服务器* > *编辑*选项。
+. 输入以逗号分隔的完全限定域名 (FQDN)、IPv4 或 IPv6 地址。
++
+刷新屏幕以查看更新的值。
+
+

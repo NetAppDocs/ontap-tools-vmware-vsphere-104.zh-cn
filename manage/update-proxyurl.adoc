@@ -1,0 +1,25 @@
+---
+permalink: manage/update-proxyurl.html 
+sidebar: sidebar 
+keywords:  
+summary: '您可以从适用ONTAP tools for VMware vSphere图形用户界面 (GUI) 中提供的选项收集适用于ONTAP tools for VMware vSphere的日志文件。技术支持可能会要求您收集日志文件以帮助解决问题。' 
+---
+= 更新AutoSupport代理 URL
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+更新AutoSupport代理 URL，以确保在使用代理服务器进行网络访问控制或安全措施的情况下AutoSupport功能正常运行。它允许AutoSupport数据通过适当的代理进行路由，从而实现安全传输和合规性。
+
+.步骤
+. 从 Web 浏览器启动ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 从侧边栏中选择*设置*。
+. 选择*设置* > *遥测* > *编辑*选项。
+. 输入有效的*代理 URL*并保存更改。
++
+如果您禁用AutoSupport，代理 URL 也会被禁用。
+
+

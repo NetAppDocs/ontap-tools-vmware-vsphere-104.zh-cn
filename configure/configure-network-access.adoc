@@ -1,0 +1,24 @@
+---
+permalink: configure/configure-network-access.html 
+sidebar: sidebar 
+keywords: network access configuration, export policy, mount operation, ESXi hosts 
+summary: 如果您尚未配置网络访问，则默认情况下将从 ESXi 主机发现的所有 IP 地址添加到导出策略。 
+---
+= 配置网络访问
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+如果您尚未配置网络访问，则默认情况下，从 ESXi 主机发现的所有 IP 地址都会添加到导出策略中。您可以对其进行配置，将一些特定的 IP 地址添加到导出策略中，并排除其余的 IP 地址。但是，当您在排除的 ESXi 主机上执行挂载操作时，操作失败。
+
+.步骤
+. 登录到 vSphere 客户端。
+. 在插件部分下的快捷方式页面中选择* NetApp ONTAP工具*。
+. 在ONTAP工具的左侧窗格中，导航到 *设置* > *管理网络访问* > *编辑*。
++
+要添加多个 IP 地址，请使用逗号、范围、无类域间路由 (CIDR) 或三者的组合分隔列表。
+
+. 选择*保存*。
+

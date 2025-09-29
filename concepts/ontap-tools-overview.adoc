@@ -1,0 +1,22 @@
+---
+permalink: concepts/ontap-tools-overview.html 
+sidebar: sidebar 
+keywords:  
+summary: ONTAP tools for VMware vSphere是用于虚拟机生命周期管理的工具集合。它与 VMware 生态系统集成，有助于虚拟机的配置、基本保护和灾难恢复。 
+---
+= ONTAP tools for VMware vSphere概述
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere是一套用于虚拟机生命周期管理的工具。它与 VMware 生态系统集成，帮助配置数据存储并为虚拟机提供基本保护。ONTAP tools for VMware vSphere是作为开放虚拟设备 (OVA) 部署的水平可扩展、事件驱动的微服务集合。此版本将 REST API 与ONTAP集成。
+
+ONTAP tools for VMware vSphere包括以下内容：
+
+* 虚拟机功能，如基本保护和灾难恢复
+* 用于虚拟机精细管理的 VASA 提供程序
+* 基于存储策略的管理
+* Storage Replication Adapter (SRA)
+

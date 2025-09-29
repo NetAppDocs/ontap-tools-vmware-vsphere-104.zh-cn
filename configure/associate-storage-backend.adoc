@@ -1,0 +1,22 @@
+---
+permalink: configure/associate-storage-backend.html 
+sidebar: sidebar 
+keywords:  
+summary: 将存储后端与 vCenter Server 关联，以在全局范围内创建存储后端和已加入的 vCenter Server 实例之间的映射。 
+---
+= 将存储后端与 vCenter Server 实例关联
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+将存储后端与 vCenter Server 关联，以在全局范围内创建存储后端和已加入的 vCenter Server 实例之间的映射。
+
+.步骤
+. 从 Web 浏览器启动ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 从侧边栏中选择 vCenter。
+. 选择要与存储后端关联的 vCenter Server 实例的垂直省略号。
+. 从下拉菜单中选择存储后端，将 vCenter Server 实例与所需的存储后端关联。
+

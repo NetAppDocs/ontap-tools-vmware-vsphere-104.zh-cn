@@ -1,0 +1,33 @@
+---
+permalink: concepts/high-availability.html 
+sidebar: sidebar 
+keywords:  
+summary: 'ONTAP tools for VMware vSphere支持高可用性 (HA) 配置，有助于在发生故障时提供适用ONTAP tools for VMware vSphere的不间断功能。' 
+---
+= 适用于ONTAP tools for VMware vSphere的高可用性
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere支持高可用性 (HA) 配置，有助于在发生故障时提供适用ONTAP tools for VMware vSphere的不间断功能。
+
+高可用性 (HA) 解决方案可从以下原因导致的中断中快速恢复：
+
+* 主机故障
++
+
+NOTE: 仅支持单节点故障。
+
+* 网络故障
+* 虚拟机故障（Guest OS故障）
+* 应用程序（ONTAP工具）崩溃
+
+
+无需对适用ONTAP tools for VMware vSphere进行额外配置即可提供高可用性 (HA)。
+
+
+NOTE: ONTAP tools for VMware vSphere不支持 vCenter HA。
+
+要启用 HA 功能，应在部署期间或稍后在ONTAP tools for VMware vSphere VM 设置中启用 CPU 热添加和内存热插拔。

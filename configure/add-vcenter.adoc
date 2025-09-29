@@ -1,0 +1,36 @@
+---
+permalink: configure/add-vcenter.html 
+sidebar: sidebar 
+keywords:  
+summary: 将 vCenter Server 实例添加到ONTAP tools for VMware vSphere中，以配置、管理和保护 vCenter Server 环境中的虚拟数据存储区。 
+---
+= 添加 vCenter Server 实例
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+将 vCenter Server 实例添加到ONTAP tools for VMware vSphere中，以配置、管理和保护 vCenter Server 环境中的虚拟数据存储区。添加多个 vCenter Server 实例时，需要自定义 CA 证书才能在ONTAP工具和每个 vCenter Server 之间进行安全通信。
+
+*关于此任务*
+
+通过与 vCenter 集成， ONTAP工具使您能够直接从 vSphere 客户端执行配置、快照和数据保护等存储任务，无需切换到单独的存储管理控制台。
+
+.步骤
+. 打开 Web 浏览器并导航至以下 URL： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 选择 *vCenters* > *Add* 来加入 vCenter Server 实例。提供您的 vCenter IP 地址或主机名、用户名、密码和端口详细信息。
++
+
+NOTE: 您不需要管理员帐户即可将 vCenter 实例添加到ONTAP工具。您可以创建没有管理员帐户且权限有限的自定义角色。参考link:../concepts/rbac-vcenter-use.html["将 vCenter Server RBAC 与ONTAP tools for VMware vSphere结合使用"]了解详情。
+
+
+
+将 vCenter Server 实例添加到ONTAP工具会自动触发以下操作：
+
+* vCenter 客户端插件注册为远程插件。
+* 插件和 API 的自定义权限应用于 vCenter Server 实例。
+* 创建自定义角色来管理用户。
+* 该插件作为快捷方式出现在 vSphere 用户界面上。
+

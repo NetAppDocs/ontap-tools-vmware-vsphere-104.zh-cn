@@ -1,0 +1,47 @@
+---
+permalink: protect/fan-out-protection.html 
+sidebar: sidebar 
+keywords:  
+summary: 在扇出保护中，一致性组受到双重保护，在第一个目标ONTAP集群上具有同步关系，在第二个目标ONTAP集群上具有异步关系。 
+---
+= 扇出保护
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在扇出保护中，一致性组受到双重保护，在第一个目标ONTAP集群上具有同步关系，在第二个目标ONTAP集群上具有异步关系。创建、编辑和删除SnapMirror主动同步保护工作流维护同步保护。  SRM 故障转移和重新保护工作流维持异步保护。
+
+为了建立扇出保护，您需要对等三个站点集群和 SVM。
+
+示例：
+
+|===
+
+
+| 如果 | 然后 
+
+
+ a| 
+* 源一致性组位于集群 c1 和 SVM svm1 上
+* 第一个目标一致性组位于集群 c2 和 SVM svm2 上，并且
+* 第二个目标一致性组位于集群 c3 和 SVM svm3 上
+
+ a| 
+* 源ONTAP集群上的集群对等将是 (C1, C2) 和 (C1, C3)。
+* 第一个目标ONTAP集群上的集群对等将是 (C2, C1) 和 (C2, C3)，并且
+* 第二个目标ONTAP集群上的集群对等将是 (C3, C1) 和 (C3, C2)。
+* 源 SVM 上的 SVM 对等将是 (svm1, svm2) 和 (svm1, svm3)。
+* 第一个目标 SVM 上的 SVM 对等将是 (svm2, svm1) 和 (svm2, svm3) 并且
+* 第二个目标 svm 上的 SVM 对等将是 (svm3, svm1) 和 (svm3, svm2)。
+
+
+|===
+下图显示了扇出保护配置：image:../media/fan-out-protection.png["扇出保护配置"] image:../media/fan-out-protection-relationship.png["扇出保护关系"]
+
+*步骤*
+
+. 创建一个新的占位符数据存储。参考 https://techdocs.broadcom.com/us/en/vmware-cis/live-recovery/site-recovery-manager/8-8/site-recovery-manager-administration-8-8/about-placeholder-virtual-machines/configure-a-placeholder-datastore.html["选择占位数据存储"]
+. 将数据存储添加到主机群集保护link:../manage/edit-hostcluster-protection.html["修改受保护的主机集群"]。您需要添加异步和同步策略类型。
+

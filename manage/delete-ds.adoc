@@ -1,0 +1,47 @@
+---
+permalink: manage/delete-ds.html 
+sidebar: sidebar 
+keywords: vVols datastore,delete vVol 
+summary: 删除数据存储操作会删除数据存储。对于 NFS 或 VMFS 数据存储，将出现一个对话框，其中列出正在使用该数据存储的虚拟机的列表。 
+---
+= 删除数据存储
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+所有ONTAP tools for VMware vSphere均支持从数据存储区中删除存储的操作，这些工具可在 vCenter Server 中发现或管理vVols数据存储区。此操作允许从vVols数据存储中删除卷。
+
+当特定卷上驻留有vVols时，删除选项将被禁用。除了从数据存储中删除卷之外，您还可以删除ONTAP存储上选定的卷。
+
+从 vCenter Server 中的ONTAP tools for VMware vSphere中删除数据存储区任务执行以下操作：
+
+* 卸载 vVol 容器。
+* 清理 igroup。如果 igroup 未被使用，则从 igroup 中删除 iqn。
+* 删除 Vvol 容器。
+* 将 Flex 卷保留在存储阵列上。
+
+
+按照以下步骤从 vCenter Server 的ONTAP工具中删除 NFS、VMFS 或 vVOL 数据存储库：
+
+.步骤
+. 登录到 vSphere 客户端。
+. 右键单击主机系统、主机集群或数据中心，然后选择 * NetApp ONTAP工具* > * 删除数据存储*。
++
+
+NOTE: 如果有虚拟机正在使用该数据存储区，则您无法删除该数据存储区。删除数据存储之前，您需要将虚拟机移动到其他数据存储。如果数据存储属于受保护的主机群集，则无法选中“卷删除”复选框。
+
++
+.. 对于 NFS 或 VMFS 数据存储，将出现一个对话框，其中列出正在使用该数据存储的虚拟机的列表。
+.. 如果 VMFS 数据存储区是在ASA r2 系统上创建的，并且它是保护的一部分，则需要在删除数据存储区之前取消保护它。
+.. 对于vVols数据存储，仅当没有与之关联的vVols时，删除数据存储操作才会删除该数据存储。删除数据存储库对话框提供了从ONTAP集群中删除卷的选项。
+.. 对于基于ASA r2 系统的vVols数据存储，删除后备卷的复选框不适用。
+
+
+. 要删除ONTAP存储上的后备卷，请选择“删除ONTAP集群上的卷”。
++
+
+NOTE: 您无法删除ONTAP集群上属于受保护主机集群的 VMFS 数据存储库的卷。
+
+

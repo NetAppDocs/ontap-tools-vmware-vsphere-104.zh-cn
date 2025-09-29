@@ -1,0 +1,168 @@
+---
+permalink: upgrade/upgrade-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 本页概述了ONTAP tools for VMware vSphere升级操作的错误代码。 
+---
+= 升级错误代码
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能会在ONTAP tools for VMware vSphere升级操作期间遇到错误代码。错误代码长度为五位数字，其中前两位数字代表遇到问题的脚本，后三位数字代表该脚本内的特定工作流程。
+
+所有错误日志都记录在 ansible-perl-errors.log 文件中，以便于轻松跟踪和解决问题。该日志文件包含错误代码和失败的 Ansible 任务。
+
+
+NOTE: 本页提供的错误代码仅供参考。如果错误仍然存在或没有提到解决方案，请联系支持团队。
+
+下表列出了错误代码和对应的文件名。
+
+|===
+
+
+| *错误代码* | *脚本名称* 
+
+
+| 00 | firstboot-network-config.pl，模式部署 
+
+
+| 01 | firstboot-network-config.pl，模式升级 
+
+
+| 02 | firstboot-输入验证.pl 
+
+
+| 03 | Firstboot-deploy-otv-ng.pl，部署，HA 
+
+
+| 04 | firstboot-deploy-otv-ng.pl，部署，非 HA 
+
+
+| 05 | firstboot-deploy-otv-ng.pl，重启 
+
+
+| 06 | firstboot-deploy-otv-ng.pl，升级，HA 
+
+
+| 07 | firstboot-deploy-otv-ng.pl，升级，非 HA 
+
+
+| 08 | firstboot-otv-recovery.pl 
+
+
+| 09 | 部署后升级.pl 
+|===
+错误代码的最后三位数字表示脚本中特定的工作流错误：
+
+|===
+| *升级错误代码* | *工作流程* | *解决* 
+
+
+| 052 | ISO 可能与当前版本相同或高于当前版本的两个版本。 | 使用兼容的 ISO 版本从当前版本升级。 
+
+
+| 068 | Debian 软件包回滚失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 069 | 恢复文件失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 070 | 删除备份失败 | - 
+
+
+| 071 | Kubernetes 集群不健康 | - 
+
+
+| 074 | 装载 ISO 失败 | 检查 /var/log/upgrade-run.log 并重试升级。 
+
+
+| 075 | 升级预检查失败 | 重试升级。 
+
+
+| 076 | 注册表升级失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 077 | 注册表回滚失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 078 | 操作员升级失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 079 | 操作员回滚失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 080 | 服务升级失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 081 | 服务回滚失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 082 | 从容器中删除旧图像失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 083 | 删除备份失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 084 | 将 JobManager 改回生产环境失败 | 按照以下步骤恢复/完成升级。1.启用诊断 Shell 2。运行命令：_sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postupgrade_ 3.检查 /var/log/post-deploy-upgrade.log 中的日志 
+
+
+| 087 | 升级后步骤失败。 | 执行以下步骤来恢复/完成升级。1.启用诊断 Shell 2。运行_sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postupgrade_ 命令 3.检查 /var/log/post-deploy-upgrade.log 上的日志 
+
+
+| 088 | 配置 journald 的日志轮换失败 | 检查虚拟机网络设置是否与托管虚拟机的主机兼容。您可以尝试将虚拟机迁移到另一台主机并重新启动。 
+
+
+| 089 | 更改摘要日志轮换配置文件的所有权失败 | 重试升级。 
+
+
+| 095 | 操作系统升级失败 | 操作系统升级后无恢复。  ONTAP工具服务已升级，新的 pod 将运行。 
+
+
+| 096 | 安装动态存储供应器 | 检查升级日志并重试升级。 
+
+
+| 097 | 卸载升级服务失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 098 | 将 dockercred secret 从 ntv-system 复制到动态存储配置器命名空间失败 | 检查升级日志并重试升级。 
+
+
+| 099 | 无法验证新添加的 HDD | 如果是 HA，则将新的 HDD 添加到所有节点；如果是非 HA 部署，则添加到一个节点。 
+
+
+| 108 | 种子脚本失败 | - 
+
+
+| 109 | 备份持久卷数据失败 | 检查升级日志并重试升级。 
+
+
+| 110 | 恢复持久卷数据失败 | 使用零 RPO 或基于快照的恢复并重试升级。 
+
+
+| 111 | 更新 RKE2 的 etcd 超时参数失败 | 检查升级日志并重试升级。 
+
+
+| 112 | 卸载动态存储配置器失败 | - 
+
+
+| 113 | 刷新辅助节点上的资源失败 | 检查升级日志并重试升级。 
+
+
+| 104 | 重新启动辅助节点失败 | 手动逐个重启节点 
+
+
+| 100 | 内核回滚失败 | - 
+
+
+| 051 | 动态存储配置程序升级失败 | 检查升级日志并重试升级。 
+
+
+| 056 | 删除迁移备份失败 | 不适用 
+|===
+
+NOTE: 从适用于ONTAP tools for VMware vSphere开始，不支持零 RPO。
+
+详细了解 https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/How_to_restore_ONTAP_tools_for_VMware_vSphere_if_upgrade_fails_from_version_10.0_to_10.1["如果从版本 10.0 升级到 10.1 失败，如何恢复ONTAP tools for VMware vSphere"]

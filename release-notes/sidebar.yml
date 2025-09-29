@@ -1,0 +1,10 @@
+---
+section: release-notes
+title: 发行说明
+entries:
+- title: 发行说明
+  url: "/release-notes/release-notes.html"
+- title: 适用于ONTAP tools for VMware vSphere的新功能
+  url: "/release-notes/whats-new.html"
+- title: ONTAP工具 9 和ONTAP工具 10 功能比较
+  url: "/release-notes/ontap-tools-9-ontap-tools-10-feature-comparison.html"

@@ -1,0 +1,35 @@
+---
+permalink: manage/storage-view-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: ONTAP tools for VMware vSphere的配置选项卡下的ONTAP存储视图提供与数据存储及其卷相关的数据。 
+---
+= 数据存储库的ONTAP存储视图
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere在配置选项卡中显示数据存储及其卷的ONTAP存储侧视图。
+
+.步骤
+. 从 vSphere 客户端导航到数据存储。
+. 在右侧窗格中选择“*配置*”选项卡。
+. 选择 * NetApp ONTAP工具* > * ONTAP存储*。根据数据存储类型的不同，视图也会发生变化。请参阅下表了解详情：
+
+
+|===
+
+
+| *数据存储类型* | *可用信息* 
+
+
+| NFS 数据存储库 | *存储详细信息*页面包含存储后端、聚合和卷信息。  *NFS 详细信息*页面包含与 NFS 数据存储相关的数据。 
+
+
+| VMFS 数据存储库 | *存储详细信息*页面包含存储后端、聚合、卷和存储可用区域 (SAZ) 详细信息。  *存储单元详细信息*页面包含存储单元的详细信息。 
+
+
+| vVols数据存储 | 列出所有卷。您可以从ONTAP存储窗格扩展或删除存储。基于ASA r2 系统的vVols数据存储不支持此视图。 
+|===

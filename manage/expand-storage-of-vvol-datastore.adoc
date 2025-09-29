@@ -1,0 +1,25 @@
+---
+permalink: manage/expand-storage-of-vvol-datastore.html 
+sidebar: sidebar 
+keywords: virtual volume datastores 
+summary: 当您在 vCenter 对象视图中右键单击数据存储对象时，ONTAP tools for VMware vSphere支持的操作将显示在插件部分下。 
+---
+= 扩展vVols数据存储
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当您在 vCenter 对象视图中右键单击数据存储对象时，ONTAP tools for VMware vSphere支持的操作将显示在插件部分下。根据数据存储的类型和当前用户权限启用特定操作。
+
+
+NOTE: 扩展vVols数据存储操作不适用于基于ASA r2 系统的vVols数据存储。
+
+.步骤
+. 从 vSphere Client 主页中，选择“主机和集群”。
+. 在导航窗格中，选择包含数据存储区的数据中心。
+. 右键单击数据存储并选择 * NetApp ONTAP工具* > *将存储添加到数据存储*。
+. 在“创建或选择卷”窗口中，您可以创建新卷或从现有卷中进行选择。用户界面是不言自明的。根据您的选择遵循说明。
+. 在“*摘要*”窗口中，查看选择并选择“*展开*”。您可以在最近任务面板中跟踪进度。
+

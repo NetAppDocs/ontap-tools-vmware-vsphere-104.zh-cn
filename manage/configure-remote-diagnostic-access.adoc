@@ -1,0 +1,42 @@
+---
+permalink: manage/configure-remote-diagnostic-access.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以ONTAP tools for VMware vSphere，以便为 diag 用户启用 SSH 访问。 
+---
+= 配置远程诊断访问
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以ONTAP tools for VMware vSphere，以便为 diag 用户启用 SSH 访问。
+
+.开始之前
+应该为您的 vCenter Server 实例启用 VASA 提供程序扩展。
+
+*关于此任务*
+
+使用 SSH 访问 diag 用户帐户有以下限制：
+
+* 每次激活 SSH 时只允许您使用一个登录帐户。
+* 当发生以下情况之一时，对 diag 用户帐户的 SSH 访问将被禁用：
++
+** 時間已到。
++
+登录会话仅在第二天午夜之前有效。
+
+** 您再次使用 SSH 以 diag 用户身份登录。
+
+
+
+
+.步骤
+. 从 vCenter Server 打开 VASA Provider 控制台。
+. 以维护用户身份登录。
+. 进入 `4`选择支持和诊断。
+. 进入 `2`选择启用远程诊断访问。
+. 进入 `y`在确认对话框中启用远程诊断访问。
+. 输入远程诊断访问的密码。
+

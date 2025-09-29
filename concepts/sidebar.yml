@@ -1,0 +1,28 @@
+---
+section: concepts
+title: 概念
+entries:
+- title: ONTAP tools for VMware vSphere概述
+  url: "/concepts/ontap-tools-overview.html"
+- title: 关键概念和术语
+  url: "/concepts/ontap-tools-concepts-terms.html"
+- title: 基于角色的访问控制
+  entries:
+  - title: 了解 RBAC
+    url: "/concepts/rbac-learn-about.html"
+  - title: VMware vSphere 的 RBAC
+    entries:
+    - title: vCenter Server 环境
+      url: "/concepts/rbac-vcenter-environment.html"
+    - title: 将 RBAC 与 vCenter 服务器结合使用
+      url: "/concepts/rbac-vcenter-use.html"
+  - title: 使用ONTAP的 RBAC
+    entries:
+    - title: ONTAP环境
+      url: "/concepts/rbac-ontap-environment.html"
+    - title: 将 RBAC 与ONTAP结合使用
+      url: "/concepts/rbac-ontap-use.html"
+- title: 适用于ONTAP tools for VMware vSphere的高可用性
+  url: "/concepts/high-availability.html"
+- title: ONTAP工具管理器用户界面
+  url: "/configure/manager-user-interface.html"

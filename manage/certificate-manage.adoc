@@ -1,0 +1,79 @@
+---
+permalink: manage/certificate-manage.html 
+sidebar: sidebar 
+keywords:  
+summary: ONTAP tools for VMware vSphere的单个实例可以管理多个 vCenter Server 实例。ONTAP tools for VMware vSphere是使用 VASA 提供程序的自签名证书部署的。这样，只能为vVols数据存储管理一个 vCenter Server 实例。 
+---
+= 管理证书
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+部署期间默认为ONTAP工具和 VASA Provider 生成自签名证书。使用ONTAP工具管理器界面，您可以更新证书或将其升级为自定义 CA。在多 vCenter 部署中，自定义 CA 证书是必需的。
+
+.开始之前
+* 颁发证书的域名应该映射到虚拟IP地址。
+* 对域名运行 nslookup 检查，以检查域名是否解析为预期的 IP 地址。
+* 应使用域名和ONTAP工具 IP 地址创建证书。
+
+
+
+NOTE: ONTAP工具 IP 地址应映射到完全限定域名 (FQDN)。证书应包含映射到主题或主题备用名称中的ONTAP工具 IP 地址的相同 FQDN。
+
+
+NOTE: 您不能从 CA 签名证书切换到自签名证书。
+
+[role="tabbed-block"]
+====
+.升级ONTAP工具证书
+--
+ONTAP工具选项卡显示证书类型（自签名/CA 签名）和域名等详细信息。部署时默认生成自签名证书。您可以更新证书或将证书升级到CA。
+
+.步骤
+. 从 Web 浏览器启动ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 选择 *证书* > * ONTAP工具* > *续订* 来续订证书。
++
+如果证书已过期或即将过期，您可以续订证书。当证书类型为 CA 签名时，可以使用续订选项。在弹出窗口中，提供服务器证书、私钥、根 CA 和中间证书详细信息。
+
++
+
+NOTE: 系统将处于离线状态，直到证书更新为止，并且您将退出ONTAP工具管理器界面。
+
+. 要将自签名证书升级为自定义 CA 证书，请选择 *证书* > * ONTAP工具* > *升级到 CA* 选项。
++
+.. 在弹出的窗口中，上传服务器证书、服务器证书私钥、根CA证书、中间证书文件。
+.. 输入您生成此证书的域名并升级证书。
++
+
+NOTE: 系统将处于离线状态，直到升级完成，并且您将退出ONTAP工具管理器界面。
+
+
+
+
+
+--
+.升级 VASA 提供程序证书
+--
+ONTAP tools for VMware vSphere是使用 VASA 提供程序的自签名证书部署的。这样，只能为vVols数据存储管理一个 vCenter Server 实例。当您管理多个 vCenter Server 实例并希望在其上启用vVols功能时，您需要将自签名证书更改为自定义 CA 证书。
+
+.步骤
+. 从 Web 浏览器启动ONTAP工具管理器： `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`
+. 使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+. 选择 *证书* > *VASA 提供程序* 或 * ONTAP工具* > *续订* 来续订证书。
+. 选择 *证书* > *VASA 提供程序* 或 * ONTAP工具* > *升级到 CA* 将自签名证书升级为自定义 CA 证书。
++
+.. 在弹出的窗口中，上传服务器证书、服务器证书私钥、根CA证书、中间证书文件。
+.. 输入您生成此证书的域名并升级证书。
++
+
+NOTE: 系统将处于离线状态，直到升级完成，并且您将退出ONTAP工具管理器界面。
+
+
+
+
+
+--
+====

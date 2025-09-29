@@ -1,0 +1,33 @@
+---
+permalink: configure/registration-process.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以使用适用于ONTAP tools for VMware vSphere将 VASA 提供程序注册到 vCenter Server 实例。 
+---
+= 向 vCenter Server 实例注册 VASA 提供程序
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用适用于ONTAP tools for VMware vSphere将 VASA 提供程序注册到 vCenter Server 实例。 VASA 提供程序设置部分显示所选 vCenter Server 的 VASA 提供程序注册状态。在多 vCenter 部署中，确保每个 vCenter Server 实例都有自定义 CA 证书。
+
+.步骤
+. 登录到 vSphere 客户端。
+. 在插件部分下选择 *快捷方式* > * NetApp ONTAP工具*。
+. 选择“设置”>“VASA 提供程序设置”。VASA 提供程序注册状态将显示为未注册。
+. 选择“*注册*”按钮来注册 VASA 提供程序。
+. 输入 VASA 提供程序的名称和凭据。用户名只能包含字母、数字和下划线。密码长度应在 8 到 256 个字符之间。
+. 选择*注册*。
+. 注册成功并刷新页面后，将显示已注册的 VASA 提供程序的状态、名称和版本。注册后，取消注册操作被激活。
+
+
+.下一步
+验证已加入的 VASA 提供程序是否在 vCenter 客户端的 VASA 提供程序下列出：
+
+.步骤
+. 导航到 vCenter Server 实例。
+. 使用管理员凭据登录。
+. 选择*存储提供商* > *配置*。验证已加入的 VASA 提供程序是否正确列出。
+

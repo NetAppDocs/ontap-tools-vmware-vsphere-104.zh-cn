@@ -1,0 +1,29 @@
+---
+permalink: manage/remove-storage-from-a-vvols-datastore.html 
+sidebar: sidebar 
+keywords: Remove vVol datastore 
+summary: 当选定的数据存储上没有vVols时，删除数据存储操作会删除该数据存储。 
+---
+= 缩小vVols数据存储
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+当选定的数据存储上没有vVols时，删除数据存储操作会删除该数据存储。
+
+
+NOTE: 基于ASA r2 系统的vVols数据存储不支持缩小vVols数据存储操作。
+
+.步骤
+. 从 vSphere Client 主页中，选择“主机和集群”。
+. 在导航窗格中，选择包含数据存储区的数据中心。
+. 右键单击 vVol 数据存储并选择 * NetApp ONTAP工具* > *从数据存储中删除存储*。
+. 选择没有vVols的卷并选择*删除*。
++
+
+NOTE: 选择vVols所在卷的选项已被禁用。
+
+. 在*删除存储*弹出窗口中，选中*从ONTAP集群中删除卷*复选框以从数据存储和ONTAP存储中删除卷，然后选择*删除*。
+

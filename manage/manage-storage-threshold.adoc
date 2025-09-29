@@ -1,0 +1,21 @@
+---
+permalink: manage/manage-storage-threshold.html 
+sidebar: sidebar 
+keywords:  
+summary: 您可以设置阈值，当卷和聚合容量达到特定水平时，在 vCenter Server 中接收通知。 
+---
+= 管理存储阈值
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以设置阈值，当卷和聚合容量达到特定水平时，在 vCenter Server 中接收通知。
+
+.步骤：
+. 登录到 vSphere 客户端。
+. 在快捷方式页面中，选择插件部分下的* NetApp ONTAP工具*。
+. 在ONTAP工具的左侧窗格中，导航到 *设置* > *阈值设置* > *编辑*。
+. 在“*编辑阈值*”窗口中，在“*接近满*”和“*满*”字段中提供所需的值，然后选择“*保存*”。您可以将数字重置为推荐值，即 80 表示接近满，90 表示满。
+

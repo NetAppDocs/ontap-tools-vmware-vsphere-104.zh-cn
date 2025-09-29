@@ -1,0 +1,29 @@
+---
+permalink: protect/enable-storage-replication-adapter.html 
+sidebar: sidebar 
+keywords:  
+summary: ONTAP tools for VMware vSphere提供了启用 SRA 功能来配置灾难恢复的选项。 
+---
+= 配置 SRA 以保护数据存储
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere提供了启用 SRA 功能来配置灾难恢复的选项。
+
+.开始之前
+* 您应该已经设置了 vCenter Server 实例并配置了 ESXi 主机。
+* 您应该已经ONTAP tools for VMware vSphere。
+* 您应该已经下载了 SRA 适配器 `.tar.gz`文件来自 https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["NetApp 支持站点"^]。
+* 在运行 SRA 工作流之前，源 ONTAP 集群和目标ONTAP集群必须创建相同的自定义SnapMirror计划。
+* link:../manage/enable-services.html["ONTAP tools for VMware vSphere"]启用 SRA 功能。
+
+
+.步骤
+. 使用以下 URL 登录 VMware Live Site Recovery 设备管理界面： `\https://:<srm_ip>:5480` ，然后转到 VMware VMware Live Site Recovery 设备管理界面中的存储复制适配器。
+. 选择*新适配器*。
+. 将 SRA 插件的 _.tar.gz_ 安装程序上传到 VMware Live Site Recovery。
+. 重新扫描适配器以验证 VMware Live Site Recovery 存储复制适配器页面上的详细信息是否已更新。
+

@@ -1,0 +1,63 @@
+---
+permalink: manage/migrate-virtual-machines.html 
+sidebar: sidebar 
+keywords:  
+summary: 在迁移数据中心中现有的虚拟机时，您应该注意一些注意事项。 
+---
+= 迁移或克隆虚拟机的注意事项
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在迁移数据中心中的现有虚拟机时，您应该注意一些注意事项。
+
+
+
+== 迁移受保护的虚拟机
+
+您可以将受保护的虚拟机迁移到：
+
+* 不同 ESXi 主机中的相同vVols数据存储
+* 同一 ESXi 主机中存在不同的兼容vVols数据存储
+* 不同 ESXi 主机中不同的兼容vVols数据存储
+
+
+如果虚拟机迁移到不同的FlexVol volume，则相应的元数据文件也会使用虚拟机信息进行更新。如果虚拟机迁移到不同的 ESXi 主机但相同的存储，则底层FlexVol volume数据文件将不会被修改。
+
+
+
+== 克隆受保护的虚拟机
+
+您可以将受保护的虚拟机克隆到以下内容：
+
+* 使用复制组的同一FlexVol volume的同一容器
++
+相同的FlexVol卷的元数据文件将使用克隆的虚拟机详细信息进行更新。
+
+* 使用复制组的不同FlexVol volume的同一容器
++
+放置克隆虚拟机的FlexVol volume，元数据文件会使用克隆虚拟机的详细信息进行更新。
+
+* 不同的容器或vVols数据存储
++
+放置克隆虚拟机的FlexVol volume，元数据文件获取更新的虚拟机详细信息。
+
+
+
+VMware 目前不支持将虚拟机克隆到 VM 模板。
+
+支持受保护虚拟机的克隆。
+
+参考 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration-guide-7-0/deploying-virtual-machinesvm-admin/clone-an-existing-virtual-machine-h5vm-admin.html["创建用于克隆的虚拟机"]了解更多详情。
+
+
+
+== 虚拟机快照
+
+目前仅支持没有内存的虚拟机快照。如果虚拟机有带内存的Snapshot，那么该虚拟机就不考虑保护。
+
+您也无法保护具有内存快照的未受保护的虚拟机。对于此版本，您需要在启用虚拟机保护之前删除内存快照。
+
+对于具有ASA r2 存储类型的 Windows VM，当您拍摄虚拟机快照时，它将是只读快照。当虚拟机需要开机时，VASA 提供程序会使用只读快照创建一个 LUN，然后启用它以实现 IOPS。在关机请求期间，VASA Provider 会删除已创建的 LUN，然后禁用 IOPS。

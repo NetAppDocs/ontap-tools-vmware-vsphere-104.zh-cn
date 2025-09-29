@@ -1,0 +1,33 @@
+---
+sidebar: sidebar 
+permalink: automation/api-reference.html 
+keywords: ontap tools for vmware vsphere rest api reference, api reference 
+summary: ONTAP tools for VMware vSphere包含有关所有 API 调用的详细信息。在开发自动化应用程序时，此参考很有帮助。 
+---
+= 适用ONTAP tools for VMware vSphere的 API 参考
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere包含有关所有 API 调用的详细信息。在开发自动化应用程序时，此参考很有帮助。
+
+您可以通过 Swagger 用户界面在线访问适用ONTAP tools for VMware vSphere。您需要ONTAP tools for VMware vSphere的 IP 地址或 FQDN 以及端口。
+
+.步骤
+. 在浏览器中输入以下 URL，用适当的 IP 地址和端口组合替换变量，然后按 *Enter*。
++
+`\https://$FQDN_IP_PORT/`
+
++
+*例子*
+
++
+`\https://10.61.25.33:8443/`
+
+. 作为单个 API 调用的示例，向下滚动到 *vCenters* 类别并选择端点旁边的 *GET* `/virtualization/api/v1/vcenters`
+

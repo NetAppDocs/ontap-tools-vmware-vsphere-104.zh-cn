@@ -1,0 +1,40 @@
+---
+permalink: manage/uninstall-deployment.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 按照本节中的说明正常终止ONTAP tools for VMware vSphere。 
+---
+= 卸载ONTAP tools for VMware vSphere
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+卸载ONTAP tools for VMware vSphere将删除工具中的所有数据。
+
+.步骤
+. 从ONTAP tools for VMware vSphere中删除或移动所有虚拟机。
++
+** 要删除虚拟机，请参阅 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-virtual-machine-administration-guide-8-0/managing-virtual-machinesvsphere-vm-admin/adding-and-removing-virtual-machinesvsphere-vm-admin.html#GUID-376174FE-F936-4BE4-B8C2-48EED42F110B-en["删除并重新注册虚拟机和虚拟机模板"]
+** 要将它们移动到非托管数据存储区，请参阅 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/migrate-a-virtual-machine-with-storage-vmotion.html["如何使用 Storage vMotion 迁移虚拟机"]
+
+
+. link:../manage/delete-ds.html["删除数据存储"]在ONTAP tools for VMware vSphere上创建。
+. 如果您已启用 VASA 提供程序，请在ONTAP工具中选择 *设置* > *VASA 提供程序设置* > *取消注册*，以从所有 vCenter 服务器取消注册 VASA 提供程序。
+. 取消所有存储后端与 vCenter Server 实例的关联。请参阅link:../manage/manage-vcenter.html["取消存储后端与 vCenter Server 实例的关联"] 。
+. 删除所有存储后端。请参阅link:../manage/storage-backend.html["管理存储后端"] 。
+. 从 VMware Live Site Recovery 中移除 SRA 适配器：
++
+.. 使用端口 5480 以管理员身份登录 VMware Live Site Recovery 设备管理界面。
+.. 选择*存储复制适配器*。
+.. 选择适当的 SRA 卡，然后从下拉菜单中选择*删除*。
+.. 确认您知道删除适配器的结果并选择*删除*。
+
+
+. 删除已加入ONTAP tools for VMware vSphere的vCenter 服务器实例。请参阅link:../manage/manage-vcenter.html["管理 vCenter Server 实例"] 。
+. 从 vCenter Server 关闭ONTAP tools for VMware vSphere并删除 VM。
+
+
+.下一步是什么？
+link:../manage/delete-deployment.html["删除FlexVol卷"]

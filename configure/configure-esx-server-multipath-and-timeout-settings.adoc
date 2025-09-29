@@ -1,0 +1,104 @@
+---
+permalink: configure/configure-esx-server-multipath-and-timeout-settings.html 
+sidebar: sidebar 
+keywords:  
+summary: ONTAP tools for VMware vSphere会检查并设置与NetApp存储系统配合最佳的 ESXi 主机多路径设置和 HBA 超时设置。 
+---
+= 配置 ESXi 主机设置
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+配置 ESXi 服务器多路径和超时设置可在主路径发生故障时无缝切换到备份存储路径，从而确保高可用性和数据完整性。
+
+
+
+== 配置 ESXi 服务器多路径和超时设置
+
+ONTAP tools for VMware vSphere会检查并设置与NetApp存储系统配合最佳的 ESXi 主机多路径设置和 HBA 超时设置。
+
+*关于此任务*
+
+根据您的配置和系统负载，此过程可能需要很长时间。任务进度显示在“近期任务”面板中。
+
+.步骤
+. 从 VMware vSphere Web 客户端主页中，选择“主机和集群”。
+. 右键单击主机并选择 * NetApp ONTAP工具* > *更新主机数据*。
+. 在 VMware vSphere Web 客户端的快捷方式页面上，选择插件部分下的 * NetApp ONTAP工具*。
+. 转到ONTAP tools for VMware vSphere概览（仪表板）中的 *ESXi 主机合规性* 卡。
+. 选择*应用推荐设置*链接。
+. 在“应用推荐的主机设置”窗口中，选择要更新以符合NetApp推荐设置的主机，然后选择“下一步”。
++
+
+NOTE: 您可以展开 ESXi 主机来查看当前值。
+
+. 在设置页面中，根据需要选择推荐值。
+. 在摘要窗格中，检查值并选择*完成*。您可以在最近任务面板中跟踪进度。
+
+
+
+
+== 设置 ESXi 主机值
+
+使用适用ONTAP tools for VMware vSphere，您可以在 ESXi 主机上设置超时和其他值，以确保最佳性能和成功故障转移。适用ONTAP tools for VMware vSphere设置的值基于NetApp内部测试。
+
+您可以在 ESXi 主机上设置以下值：
+
+
+
+=== HBA/CNA 适配器设置
+
+将以下参数设置为默认值：
+
+* Disk.QFullSampleSize
+* Disk.QFullThreshold
+* Emulex FC HBA 超时
+* QLogic FC HBA 超时
+
+
+
+
+=== MPIO 设置
+
+MPIO 设置定义了NetApp存储系统的首选路径。它们确定哪些可用路径是优化的（而不是穿过互连电缆的非优化路径），并将首选路径设置为其中一条路径。
+
+在高性能环境中，或者当您使用单个 LUN 数据存储测试性能时，请考虑将循环 (VMW_PSP_RR) 路径选择策略 (PSP) 的负载平衡设置从默认 IOPS 设置 1000 更改为值 1。
+
+
+NOTE: MPIO 设置不适用于 NVMe、NVMe/FC 和 NVMe/TCP 协议。
+
+
+
+=== NFS 设置
+
+|===
+
+
+| 参数 | 将此值设置为... 
+
+
+| Net.TcpipHeapSize | 32 
+
+
+| Net.TcpipHeapMax | 1024 MB 
+
+
+| NFS.MaxVolumes | 256 
+
+
+| NFS41.MaxVolumes | 256 
+
+
+| NFS.MaxQueueDepth | 128 或更高 
+
+
+| NFS.HeartbeatMaxFailures | 10 
+
+
+| NFS.HeartbeatFrequency | 12 
+
+
+| NFS.HeartbeatTimeout | 5 
+|===

@@ -1,0 +1,92 @@
+---
+permalink: concepts/rbac-ontap-use.html 
+sidebar: sidebar 
+keywords: ontap rbac, use ontap rbac 
+summary: 在生产环境中使用ONTAPONTAP tools for VMware vSphere 10 RBAC 实施之前，您应该考虑几个方面。 
+---
+= 将ONTAP RBAC 与ONTAP tools for VMware vSphere结合使用
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在生产环境中使用ONTAPONTAP tools for VMware vSphere 10 RBAC 实施之前，您应该考虑几个方面。
+
+
+
+== 配置过程概述
+
+ONTAP tools for VMware vSphere支持创建具有自定义角色的ONTAP用户。这些定义打包在一个 JSON 文件中，您可以将其上传到ONTAP集群。您可以根据您的环境和安全需求创建用户并定制角色。
+
+下面详细描述了主要的配置步骤。参考link:../configure/configure-user-role-and-privileges.html["配置ONTAP用户角色和权限"]了解更多详情。
+
+.1.准备
+您需要拥有ONTAP工具管理器和ONTAP集群的管理凭据。
+
+.2.下载 JSON 定义文件
+登录ONTAP工具管理器用户界面后，您可以下载包含 RBAC 定义的 JSON 文件。
+
+.3.创建具有角色的ONTAP用户
+登录系统管理器后，您可以创建用户和角色：
+
+. 选择左侧的“*Cluster*”，然后选择“*Settings*”。
+. 向下滚动到*用户和角色*并点击 `-->`。
+. 选择*用户*下的*添加*，然后选择*虚拟化产品*。
+. 在本地工作站上选择 JSON 文件并上传。
+
+
+.4.配置角色
+作为定义角色的一部分，您需要做出几个管理决策。看<<使用系统管理器配置角色>>了解更多详情。
+
+
+
+== 使用系统管理器配置角色
+
+在您开始使用系统管理器创建新用户和角色并上传 JSON 文件后，您可以根据您的环境和需求自定义角色。
+
+
+
+=== 核心用户和角色配置
+
+RBAC 定义被打包为多种产品功能，包括 VSC、VASA Provider 和 SRA 的组合。您应该选择需要 RBAC 支持的环境。例如，如果您希望角色支持远程插件功能，请选择 VSC。您还需要选择用户名和相关密码。
+
+
+
+=== 权限
+
+根据对ONTAP存储所需的访问级别，角色权限分为四组。角色所基于的权限包括：
+
+* 发现
++
+此角色使您能够添加存储系统。
+
+* 创建存储
++
+此角色使您能够创建存储。它还包括与发现角色相关的所有特权。
+
+* 修改存储
++
+此角色使您能够修改存储。它还包括与发现和创建存储角色相关的所有权限。
+
+* 销毁存储
++
+此角色使您能够销毁存储。它还包括与发现、创建存储和修改存储角色相关的所有权限。
+
+
+
+
+
+=== 生成具有角色的用户
+
+为您的环境选择配置选项后，单击“*添加*”， ONTAP将创建用户和角色。生成的角色的名称是以下值的组合：
+
+* JSON 文件中定义的常量前缀值（例如“OTV_10”）
+* 您选择的产品功能
+* 权限集列表。
+
+
+.示例
+`OTV_10_VSC_Discovery_Create`
+
+新用户将被添加到“用户和角色”页面的列表中。请注意，HTTP 和 ONTAPI 用户登录方法均受支持。

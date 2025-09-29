@@ -1,0 +1,42 @@
+---
+permalink: configure/discover-storage-systems-and-hosts.html 
+sidebar: sidebar 
+keywords:  
+summary: 首次在 vSphere Client 中运行ONTAP tools for VMware vSphere时，ONTAP tools for VMware vSphere会发现 ESXi 主机、其 LUN 和 NFS 导出以及拥有这些 LUN 和导出的NetApp存储系统。 
+---
+= 发现存储系统和主机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+首次在 vSphere Client 中运行ONTAP tools for VMware vSphere时， ONTAP工具会发现 ESXi 主机、其 LUN 和 NFS 导出以及拥有这些 LUN 和导出的NetApp存储系统。
+
+.开始之前
+* 所有 ESXi 主机都应打开电源并连接。
+* 所有要发现的存储虚拟机 (SVM) 都应该正在运行，并且每个集群节点都应至少有一个为正在使用的存储协议（NFS 或 iSCSI）配置的数据 LIF。
+
+
+*关于此任务*
+
+您可以发现新的存储系统或更新现有存储系统的信息，随时获取最新的容量和配置信息。您还可以修改适用ONTAP tools for VMware vSphere用于登录存储系统的凭据。
+
+在发现存储系统时，ONTAP tools for VMware vSphere会从 vCenter Server 实例管理的 ESXi 主机收集信息。
+
+.步骤
+. 从 vSphere Client 主页中，选择“主机和集群”。
+. 右键单击所需的数据中心并选择 * NetApp ONTAP工具* > *更新主机数据*。
++
+在*确认*对话框中，确认您的选择。
+
+. 选择已发现的具有以下状态的存储控制器 `Authentication Failure`并选择*操作* > *修改*。
+. 在“修改存储系统”对话框中填写所需的信息。
+. 对所有存储控制器重复步骤 4 和 5 `Authentication Failure`地位。
+
+
+发现过程完成后，执行以下操作：
+
+* 使用适用ONTAP tools for VMware vSphere在适配器设置列、MPIO 设置列或 NFS 设置列中显示警报图标的主机配置 ESXi 主机设置。
+* 提供存储系统凭证。
+

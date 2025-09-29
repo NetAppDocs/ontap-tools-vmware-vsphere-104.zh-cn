@@ -1,0 +1,51 @@
+---
+permalink: configure/protect-cluster.html 
+sidebar: sidebar 
+keywords: vVols datastore,delete vVol 
+summary: ONTAP tools for VMware vSphere可管理主机集群的保护。 
+---
+= 使用主机群集保护进行保护
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere可管理主机集群的保护。属于选定 SVM 并挂载在集群的一个或多个主机上的所有数据存储均在主机集群下受到保护。
+
+.开始之前
+确保满足以下先决条件：
+
+* 主机集群仅具有来自一个 SVM 的数据存储。
+* 安装在主机群集上的数据存储不应安装在群集外的任何主机上。
+* 主机群集上挂载的所有数据存储都必须是使用 iSCSI/FC 协议的 VMFS 数据存储。不支持使用 NVMe/FC 和 NVMe/TCP 协议的vVols、NFS 或 VMFS 数据存储。
+* 主机集群上安装的FlexVol/LUN 形成数据存储不应属于任何现有一致性组 (CG) 的一部分。
+* 主机集群上挂载的FlexVol/LUN 形成数据存储不应成为任何现有SnapMirror关系的一部分。
+* 主机群集应至少有一个数据存储。
+
+
+.步骤
+. 登录到 vSphere 客户端。
+. 右键单击主机集群并选择 * NetApp ONTAP工具* > *保护集群*。
+. 在保护集群窗口中，数据存储类型和源存储虚拟机 (VM) 详细信息会自动填充。选择数据存储链接以查看受保护的数据存储。
+. 输入*一致性组名称*。
+. 选择*添加关系*。
+. 在*添加SnapMirror关系*窗口中，选择*目标存储 VM*和*策略*类型。
++
+策略类型可以是异步或AutomatedFailOverDuplex。
+
++
+当您将SnapMirror关系添加为 AutomatedFailOverDuplex 类型策略时，必须将目标存储虚拟机作为存储后端添加到部署了适用ONTAP tools for VMware vSphere的同一 vCenter。
+
++
+在 AutomatedFailOverDuplex 策略类型中，有统一和非统一主机配置。当您选择*统一主机配置*切换按钮时，主机启动器组配置将被隐式复制到目标站点上。有关详细信息，请参阅link:../concepts/ontap-tools-concepts-terms.html["关键概念和术语"]。
+
+. 如果您选择非统一主机配置，请为该集群内的每个主机选择主机访问（源/目标）。
+. 选择“*添加*”。
+. 在*保护集群*窗口中，您无法在创建操作期间编辑受保护的集群。您可以删除并重新添加保护。在修改主机群集保护操作期间，编辑选项可用。您可以使用省略号菜单选项编辑或删除关系。
+. 选择*保护*按钮。
++
+创建 vCenter 任务并包含作业 ID 详细信息，其进度显示在最近任务面板中。这是一个异步任务；用户界面仅显示请求提交状态，并不等待任务完成。
+
+. 要查看受保护的主机集群，请导航至 * NetApp ONTAP工具* > *保护* > *主机集群关系*。
+

@@ -1,0 +1,52 @@
+---
+permalink: concepts/rbac-learn-about.html 
+sidebar: sidebar 
+keywords: role based access control, rbac, rbac components, learn about rbac 
+summary: '基于角色的访问控制 (RBAC) 是一种用于控制组织内资源访问的安全框架。 RBAC 通过定义具有特定权限级别的角色来执行操作，而不是将授权分配给单个用户，从而简化了管理。将定义的角色分配给用户，这有助于降低错误风险并简化整个组织的访问控制管理。' 
+---
+= 了解适用于ONTAP tools for VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+基于角色的访问控制 (RBAC) 是一种用于控制组织内资源访问的安全框架。 RBAC 通过定义具有特定权限级别的角色来执行操作，而不是将授权分配给单个用户，从而简化了管理。将定义的角色分配给用户，这有助于降低错误风险并简化整个组织的访问控制管理。
+
+RBAC标准模型由几种复杂度不断增加的实现技术或阶段组成。结果是，根据软件供应商及其客户的需求，实际的 RBAC 部署可能会有所不同，范围从相对简单到非常复杂。
+
+
+
+== RBAC 组件
+
+从高层次来看，每个 RBAC 实现通常都包含几个组件。作为定义授权流程的一部分，这些组件以不同的方式绑定在一起。
+
+.权限
+特权是指可以允许或拒绝的操作或能力。它可能是简单的操作，例如读取文件的能力，也可能是特定于特定软件系统的更抽象的操作。Privileges还可以用于限制对 REST API 端点和 CLI 命令的访问。每个 RBAC 实现都包含预定义的特权，也可能允许管理员创建自定义特权。
+
+.角色
+_角色_是包含一个或多个权限的容器。角色通常根据特定任务或工作职能来定义。当将角色分配给用户时，该用户被授予该角色包含的所有权限。与特权一样，实现包括预定义的角色，并且通常允许创建自定义角色。
+
+.对象
+_对象_代表在 RBAC 环境中识别的真实或抽象资源。通过权限定义的操作在相关对象上或通过相关对象执行。根据实现情况，可以将特权授予对象类型或特定对象实例。
+
+.用户和组
+_用户_被分配或与身份验证后应用的角色相关联。一些 RBAC 实现只允许为一个用户分配一个角色，而其他实现则允许每个用户拥有多个角色，并且可能一次只激活一个角色。将角色分配给_组_可以进一步简化安全管理。
+
+.权限
+_permission_ 是将用户或组与角色绑定到对象的定义。权限对于分层对象模型很有用，其中权限可以选择由层次结构中的子项继承。
+
+
+
+== 两个 RBAC 环境
+
+使用适用于ONTAP tools for VMware vSphere时，需要考虑两种不同的 RBAC 环境。
+
+.VMware vCenter Server
+VMware vCenter Server 中的 RBAC 实现用于限制对通过 vSphere Client 用户界面公开的对象的访问。作为为ONTAP tools for VMware vSphere的一部分，RBAC 环境得到扩展，以包含代表ONTAP工具功能的其他对象。通过远程插件可以访问这些对象。请参阅link:../concepts/rbac-vcenter-environment.html["vCenter Server RBAC 环境"]了解更多信息。
+
+.ONTAP集群
+ONTAP tools for VMware vSphere通过ONTAP REST API 连接到ONTAP集群以执行与存储相关的操作。对存储资源的访问是通过与身份验证期间提供的ONTAP用户关联的ONTAP角色来控制的。看link:../concepts/rbac-ontap-environment.html["ONTAP RBAC 环境"]了解更多信息。

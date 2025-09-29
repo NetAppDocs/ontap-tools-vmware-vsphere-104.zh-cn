@@ -1,0 +1,94 @@
+---
+permalink: concepts/rbac-vcenter-use.html 
+sidebar: sidebar 
+keywords: vcenter, vcenter server, vcenter server rbac, use rbac 
+summary: 在生产环境中使用适用于ONTAP tools for VMware vSphere之前，您应该考虑其几个方面。 
+---
+= 将 vCenter Server RBAC 与ONTAP tools for VMware vSphere结合使用
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+在生产环境中使用适用于ONTAP tools for VMware vSphere之前，您应该考虑其几个方面。
+
+
+
+== vCenter 角色和管理员帐户
+
+如果您想要限制对 vSphere 对象和相关管理任务的访问，则只需定义和使用自定义 vCenter Server 角色。如果不需要限制访问，您可以改用管理员帐户。每个管理员帐户都定义为位于对象层次结构顶层的管理员角色。这提供了对 vSphere 对象的完全访问权限，包括由ONTAP tools for VMware vSphere 10 添加的对象。
+
+
+
+== vSphere 对象层次结构
+
+vSphere 对象清单按层次结构组织。例如，您可以按如下方式向下移动层次结构：
+
+`vCenter Server`--> `Datacenter` --> `Cluster` --> `ESXi host` --> `Virtual Machine`
+
+除 VAAI 插件操作外，所有权限均在 vSphere 对象层次结构中验证，VAAI 插件操作则针对目标 ESXi 主机进行验证。
+
+
+
+== ONTAP tools for VMware vSphere中包含的角色
+
+为了简化使用 vCenter Server RBAC 的工作，ONTAP tools for VMware vSphere提供了针对各种管理任务定制的预定义角色。
+
+
+NOTE: 如果需要，您可以创建新的自定义角色。在这种情况下，您应该克隆现有的ONTAP工具角色之一并根据需要对其进行编辑。进行配置更改后，受影响的 vSphere 客户端用户需要注销并重新登录才能激活更改。
+
+要查看ONTAP tools for VMware vSphere，请选择 vSphere Client 顶部的“*菜单*”，然后单击左侧的“*管理*”和“*角色*”。有三个预定义的角色，如下所述。
+
+.适用于 VMware vSphere 管理员的NetApp ONTAP tools for VMware vSphere
+提供执行ONTAP tools for VMware vSphere管理员任务所需的所有本机 vCenter Server 权限和ONTAP工具特定权限。
+
+.ONTAP tools for VMware vSphere只读的NetApp ONTAP 工具
+提供对ONTAP工具的只读访问权限。这些用户无法执行任何受访问控制的ONTAP tools for VMware vSphere操作。
+
+.适用于 VMware vSphere Provision 的NetApp ONTAP tools for VMware vSphere
+提供配置存储所需的一些本机 vCenter Server 权限和ONTAP工具特定的权限。您可以执行以下任务：
+
+* 创建新的数据存储区
+* 管理数据存储库
+
+
+
+
+== vSphere 对象和ONTAP存储后端
+
+两个 RBAC 环境协同工作。在 vSphere 客户端界面中执行任务时，首先检查定义到 vCenter Server 的ONTAP工具角色。如果 vSphere 允许该操作，则检查ONTAP角色权限。第二步是根据创建和配置存储后端时分配给用户的ONTAP角色执行的。
+
+
+
+== 使用 vCenter Server RBAC
+
+使用 vCenter Server 特权和权限时需要考虑一些事项。
+
+
+
+=== 所需权限
+
+要访问适用ONTAP tools for VMware vSphere，您需要拥有特定于ONTAP工具的 _View_ 权限。如果您在没有此权限的情况下登录 vSphere 并单击NetApp图标，则ONTAP tools for VMware vSphere将显示一条错误消息并阻止您访问用户界面。
+
+vSphere 对象层次结构中的分配级别决定了您可以访问用户界面的哪些部分。将查看权限分配给根对象后，您可以通过单击NetApp图标来访问适用ONTAP tools for VMware vSphere。
+
+您可以将查看权限分配给另一个较低的 vSphere 对象级别。但是，这将限制您可以访问和使用的ONTAP tools for VMware vSphere。
+
+
+
+=== 分配权限
+
+如果您想限制对 vSphere 对象和任务的访问，则需要使用 vCenter Server 权限。您在 vSphere 对象层次结构中分配权限的位置决定了用户可以执行的ONTAP tools for VMware vSphere。
+
+
+TIP: 除非您需要定义更严格的访问权限，否则在根对象或根文件夹级别分配权限通常是一种很好的做法。
+
+适用于ONTAP tools for VMware vSphere提供的权限适用于自定义非 vSphere 对象，例如存储系统。如果可能，您应该将这些权限分配给ONTAP tools for VMware vSphere，因为没有可以将其分配给的 vSphere 对象。例如，任何包含适用ONTAP tools for VMware vSphere“添加/修改/删除存储系统”权限的权限都应在根对象级别分配。
+
+在对象层次结构中的较高级别定义权限时，您可以配置该权限，以便它被传递并由子对象继承。如果需要，您可以为子对象分配额外的权限，以覆盖从父对象继承的权限。
+
+您可以随时修改权限。如果您更改权限中的任何特权，则与该权限关联的用户需要注销 vSphere 并重新登录以启用更改。

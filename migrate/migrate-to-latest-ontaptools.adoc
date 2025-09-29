@@ -1,0 +1,29 @@
+---
+permalink: migrate/migrate-to-latest-ontaptools.html 
+sidebar: sidebar 
+keywords: migrate 
+summary: 迁移存储数据时，使用 REST API 手动加入存储后端。迁移 VASA Provider 数据时，数据从现有的 Derby 数据库导出并导入 MongoDB 数据库。 
+---
+= 从ONTAP tools for VMware vSphere迁移到 10.4
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+将ONTAP tools for VMware vSphere设置的NetApp ONTAP 工具从 9.xx 版迁移到 10.x 版需要执行迁移过程，因为跨版本的产品更新和增强功能十分重要。
+
+您可以从ONTAP tools for VMware vSphere迁移到ONTAP tools for VMware vSphere。
+
+如果您的设置中有 NFS 和 VMFS 数据存储区而没有vVols数据存储区，则只需卸载ONTAP工具 9.xx 并部署ONTAP工具 10.x。但是，如果您的设置包含vVols数据存储，则必须经历迁移 VASA 提供程序和 SRA 的过程。
+
+下表概述了这两种不同场景下的迁移过程。
+
+|===
+| *如果设置有vVols数据存储* | *如果设置仅包含 NFS 和 VMFS 数据存储* 
+
+
+| 步骤：1.link:../migrate/sra-vasa-migration.html["迁移 VASA 提供程序"] 2. https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-policy-based-management-in-vsphere/creating-and-managing-vsphere-storage-policies.html["创建虚拟机存储策略"] | 步骤：1.从您的环境中删除ONTAP工具 9.xx。参考 https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/OTV_How_to_remove_OTV_9_12_from_your_environment["如何从您的环境中删除 OTV 9.xx"]NetApp知识库文章。2.link:../deploy/quick-start.html["ONTAP tools for VMware vSphere"] 3.link:../migrate/sra-vasa-migration.html["更新 SRA"] 4. https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-policy-based-management-in-vsphere/creating-and-managing-vsphere-storage-policies.html["创建虚拟机存储策略"] 
+|===
+
+NOTE: 从适用于ONTAP tools for VMware vSphere迁移到 10.4 后，使用 NVMe/FC 协议的vVols数据存储库将无法运行，因为ONTAP工具 10.4 仅支持带有 VMFS 数据存储库的 NVMe-oF 协议。

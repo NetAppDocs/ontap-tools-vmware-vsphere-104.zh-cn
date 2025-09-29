@@ -1,0 +1,147 @@
+---
+permalink: deploy/pre-deploy-checks.html 
+sidebar: sidebar 
+keywords: ONTAP tools,Storage Replication Adapter 
+summary: 在部署ONTAP tools for VMware vSphere之前，您应该熟悉部署包的空间要求和一些基本的主机系统要求。 
+---
+= 开始之前……
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+在继续部署之前，请确保满足以下要求：
+
+|===
+| 要求 | 您的状态 
+
+
+| vSphere 版本、 ONTAP版本和 ESXi 主机版本与 ONTP 工具版本兼容。 | 是 否 
+
+
+| vCenter Server 环境已设置并配置 | 是 否 
+
+
+| 浏览器缓存已删除 | 是 否 
+
+
+| 您拥有父 vCenter Server 凭据 | 是 否 
+
+
+| 您拥有 vCenter Server 实例的登录凭据， ONTAP tools for VMware vSphere将在部署后连接到该实例进行注册 | 是 否 
+
+
+| 在多 vCenter 部署中，颁发证书的域名映射到虚拟 IP 地址，其中自定义 CA 证书是必需的。 | 是 否 
+
+
+| 您已对域名运行 nslookup 检查，以检查域名是否解析为预期的 IP 地址。 | 是 否 
+
+
+| 该证书是使用域名和ONTAP工具 IP 地址创建的。 | 是 否 
+
+
+| 可以从 vCenter Server 访问ONTAP工具应用程序和内部服务。 | 是 否 
+
+
+| 使用多租户 SVM 时，每个 SVM 上都有一个 SVM 管理 LIF。 | 是 否 
+|===
+
+
+== 部署工作表
+
+
+
+=== 对于单节点部署
+
+使用以下工作表收集适用于ONTAP tools for VMware vSphere初始部署所需的信息：
+
+|===
+| 需求 | 你的价值 
+
+
+| ONTAP工具应用程序的 IP 地址。这是用于访问ONTAP工具 Web 界面的 IP 地址 |  
+
+
+| ONTAP工具用于内部通信的虚拟 IP 地址。此 IP 地址用于具有多个ONTAP工具实例的设置中的内部通信。此 IP 地址不应与ONTAP工具应用程序的 IP 地址相同。 |  
+
+
+| 第一个节点的 DNS 主机名 |  
+
+
+| 主 DNS 服务器 |  
+
+
+| 辅助 DNS 服务器 |  
+
+
+| DNS 搜索域 |  
+
+
+| 第一个节点的 IPv4 地址。它是管理网络上节点管理接口的唯一 IPv4 地址。 |  
+
+
+| IPv4 地址的子网掩码 |  
+
+
+| IPv4 地址的默认网关 |  
+
+
+| IPv6 地址（可选） |  
+
+
+| IPv6 前缀长度（可选） |  
+
+
+| IPv6 地址的网关（可选） |  
+|===
+
+NOTE: 为上述所有 IP 地址创建 DNS 记录。在分配主机名之前，将其映射到 DNS 上的空闲 IP 地址。所有 IP 地址都应位于为部署而选择的同一 VLAN 上。
+
+
+
+=== 对于高可用性（HA）部署
+
+除了单节点部署要求之外，您还需要以下有关 HA 部署的信息：
+
+|===
+
+
+| 需求 | 你的价值 
+
+
+| 主 DNS 服务器 |  
+
+
+| 辅助 DNS 服务器 |  
+
+
+| DNS 搜索域 |  
+
+
+| 第二个节点的 DNS 主机名 |  
+
+
+| 第二个节点的 IP 地址 |  
+
+
+| 第三个节点的 DNS 主机名 |  
+
+
+| 第三个节点的 IP 地址 |  
+|===
+
+
+== 网络防火墙配置
+
+在网络防火墙中打开 IP 地址所需的端口。 ONTAP工具必须能够通过端口 443 访问此 LIF。参考link:../deploy/prerequisites.html["端口要求"]了解最新更新。
+
+
+
+== ONTAP存储设置
+
+为确保ONTAP存储与ONTAP tools for VMware vSphere无缝集成，请考虑以下设置：
+
+* 如果您使用光纤通道 (FC) 进行存储连接，请在 FC 交换机上配置分区以将 ESXi 主机与 SVM 的 FC LIF 连接起来。 https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["了解ONTAP系统的 FC 和 FCoE 分区"]
+* 要使用ONTAP工具管理的SnapMirror复制， ONTAP存储管理员应创建 https://docs.netapp.com/us-en/ontap/peering/create-cluster-relationship-93-later-task.html["ONTAP集群对等关系"]和 https://docs.netapp.com/us-en/ontap/peering/create-intercluster-svm-peer-relationship-93-later-task.html["ONTAP集群间 SVM 对等关系"]在ONTAP中使用SnapMirror之前。
+

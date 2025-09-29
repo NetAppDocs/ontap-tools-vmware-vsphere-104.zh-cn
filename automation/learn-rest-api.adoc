@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: automation/learn-rest-api.html 
+keywords: ontap tools vmware vsphere rest api 
+summary: ONTAP tools for VMware vSphere是一套用于虚拟机生命周期管理的工具。它包含一个强大的 REST API，您可以将其用作自动化流程的一部分。 
+---
+= 了解适用于ONTAP tools for VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere是一套用于虚拟机生命周期管理的工具。它包含一个强大的 REST API，您可以将其用作自动化流程的一部分。
+
+
+
+== REST Web 服务基础
+
+表述性状态转移 (REST) 是一种创建分布式 Web 应用程序的风格，包括 Web 服务 API 的设计。它建立了一套用于公开基于服务器的资源并管理其状态的技术。
+
+.资源和国家代表
+资源是 REST Web 服务应用程序的基础组件。设计 REST API 时有两个重要的初始任务：
+
+* 识别系统或基于服务器的资源
+* 定义资源状态和相关的状态转换操作
+
+
+客户端应用程序可以通过明确定义的消息流显示和更改资源状态。
+
+.HTTP 消息
+超文本传输协议 (HTTP) 是 Web 服务客户端和服务器用来交换有关资源的消息的协议。它遵循基于通用操作创建、读取、更新和删除的 CRUD 模型。  HTTP 协议包括请求和响应标头以及响应状态代码。
+
+.JSON 数据格式
+虽然有几种可用的消息格式，但最流行的选项是 JavaScript 对象表示法 (JSON)。  JSON 是一种以纯文本表示简单数据结构的行业标准，用于传输描述资源和所需操作的状态信息。
+
+.安全性
+安全性是 REST API 的一个重要方面。除了用于保护网络上的 HTTP 流量的传输层安全性 (TLS) 协议之外，ONTAP tools for VMware vSphere还使用访问令牌进行身份验证。您需要获取访问令牌并在后续 API 调用中使用它。
+
+.支持异步请求
+ONTAP tools for VMware vSphere同步执行大多数请求，并在操作完成时返回状态代码。它还支持需要较长时间才能完成的任务的异步处理。
+
+
+
+== ONTAP工具管理器环境
+
+您应该考虑ONTAP工具管理器环境的几个方面。
+
+.虚拟机
+ONTAP tools for VMware vSphere是使用 vSphere 远程插件架构部署的。该软件（包括对 REST API 的支持）在单独的虚拟机中运行。
+
+.ONTAP工具 IP 地址
+ONTAP tools for VMware vSphere公开了一个 IP 地址，该地址为虚拟机的功能提供了网关。您需要在初始配置期间提供地址，并将其分配给内部负载平衡器组件。该地址由ONTAP工具管理器用户界面使用，也可用于直接访问 Swagger 文档页面和 REST API。
+
+.两个 REST API
+除了适用于ONTAP tools for VMware vSphere之外， ONTAP集群还有自己的 REST API。 ONTAP工具管理器使用ONTAP REST API 作为客户端来执行与存储相关的任务。重要的是要记住这两个 API 是独立且不同的。有关更多信息，请参阅 https://docs.netapp.com/us-en/ontap-automation/["ONTAP自动化"^] 。

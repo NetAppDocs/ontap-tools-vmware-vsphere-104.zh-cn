@@ -1,0 +1,49 @@
+---
+permalink: manage/attach-detach-disk.html 
+sidebar: sidebar 
+keywords:  
+summary: 将数据盘挂载到虚拟机，扩展存储容量。 
+---
+= 从虚拟机附加或分离数据磁盘
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+
+
+== 将数据磁盘附加到虚拟机
+
+将数据盘挂载到虚拟机，扩展存储容量。
+
+.步骤
+. 登录到 vSphere 客户端。
+. 右键单击清单中的虚拟机并选择*编辑设置*。
+. 在“虚拟硬件”选项卡上，选择“现有硬盘”。
+. 选择磁盘所在的虚拟机。
+. 选择要附加的磁盘并选择“确定”
+
+
+.结果
+该硬盘出现在虚拟硬件设备列表中。
+
+
+
+== 从虚拟机中分离数据磁盘
+
+当不再需要虚拟机上附加的数据磁盘时，您可以将其分离。当您将磁盘从虚拟机中分离时，它不会被自动删除；它会保留在ONTAP存储系统上。
+
+.步骤
+. 登录到 vSphere 客户端。
+. 右键单击清单中的虚拟机并选择*编辑设置*。
+. 将指针移到磁盘上并选择*删除*。
++
+
+NOTE: 该磁盘已从虚拟机中移除。如果其他虚拟机共享该磁盘，则不会删除磁盘文件。
+
+
+
+.相关信息
+https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration-guide-7-0/configuring-virtual-machine-hardwarevm-admin/virtual-disk-configurationvm-admin/add-a-hard-disk-to-a-virtual-machinevm-admin/add-a-new-hard-disk-to-a-virtual-machinevm-admin.html["向虚拟机添加新硬盘"]
+
+https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/7-0/vsphere-virtual-machine-administration-guide-7-0/configuring-virtual-machine-hardwarevm-admin/virtual-disk-configurationvm-admin/add-a-hard-disk-to-a-virtual-machinevm-admin/add-an-existing-hard-disk-to-a-virtual-machinevm-admin.html["将现有硬盘添加到虚拟机"]

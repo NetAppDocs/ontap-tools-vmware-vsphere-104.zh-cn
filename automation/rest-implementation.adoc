@@ -1,0 +1,160 @@
+---
+permalink: automation/rest-implementation.html 
+sidebar: sidebar 
+keywords: ontap tools vmware vsphere rest api reference 
+summary: 虽然 REST 建立了一套通用的技术和最佳实践，但每个 API 的具体实现可能会根据设计选择而有所不同。在使用之前，您应该熟悉ONTAP tools for VMware vSphere的设计方式。 
+---
+= 适用于ONTAP tools for VMware vSphere的实施详细信息
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+虽然 REST 建立了一套通用的技术和最佳实践，但每个 API 的具体实现可能会根据设计选择而有所不同。在使用之前，您应该熟悉ONTAP tools for VMware vSphere的设计方式。
+
+REST API 包括多个资源类别，例如 vCenter 和 Aggregates。回顾link:../automation/api-reference.html["API 参考"]了解更多信息。
+
+
+
+== 如何访问 REST API
+
+您可以通过ONTAP工具 IP 地址和端口访问适用ONTAP tools for VMware vSphere。完整的 URL 包含几个部分，包括：
+
+* ONTAP工具 IP 地址和端口
+* API 版本
+* 资源类别
+* 特定资源
+
+
+您必须在初始设置期间配置 IP 地址，而端口固定为 8443。URL的第一部分对于每个ONTAP tools for VMware vSphere都是一致的；只有资源类别和特定资源在端点之间发生变化。
+
+
+CAUTION: 以下示例中的 IP 地址和端口值仅用于说明目的。您需要根据您的环境更改这些值。
+
+.访问身份验证服务的示例
+`\https://10.61.25.34:8443/virtualization/api/v1/auth/login`
+
+此 URL 可用于通过 POST 方法请求访问令牌。
+
+.列出 vCenter 服务器的示例
+`\https://10.61.25.34:8443/virtualization/api/v1/vcenters`
+
+此 URL 可用于通过 GET 方法请求已定义的 vCenter 服务器实例列表。
+
+
+
+== HTTP 详细信息
+
+ONTAP tools for VMware vSphere使用 HTTP 和相关参数对资源实例和集合进行操作。  HTTP 实现的详细信息如下所示。
+
+
+
+=== HTTP 方法
+
+下表列出了 REST API 支持的 HTTP 方法或动词。
+
+[cols="15,15,70"]
+|===
+| 方法 | 增删改查 | 描述 
+
+
+| GET | 读取 | 检索资源实例或集合的对象属性。当与集合一起使用时，这被视为列表操作。 
+
+
+| POST | 创建 | 根据输入参数创建一个新的资源实例。 
+
+
+| PUT | 更新 | 使用提供的 JSON 请求正文更新整个资源实例。用户不可修改的键值将被保留。 
+
+
+| 修补 | 更新 | 请求将请求中的一组选定的更改应用到资源实例。 
+
+
+| DELETE | 删除 | 删除现有的资源实例。 
+|===
+
+
+=== 请求和响应标头
+
+下表总结了 REST API 使用的最重要的 HTTP 标头。
+
+[cols="30,15,55"]
+|===
+| 标题 | 类型 | 用法说明 
+
+
+| 接受 | 要求 | 这是客户端应用程序可以接受的内容类型。有效值包括“\*/*”或 `application/json`。 
+
+
+| x-授权 | 要求 | 包含用于识别通过客户端应用程序发出请求的用户的访问令牌。 
+
+
+| 内容类型 | 响应 | 由服务器返回 `Accept`请求标头。 
+|===
+
+
+=== HTTP 状态代码
+
+REST API 使用的 HTTP 状态代码如下所述。
+
+[cols="15,20,65"]
+|===
+| 代码 | 含义 | 描述 
+
+
+| 200 | 确定 | 表示调用成功但未创建新的资源实例。 
+
+
+| 201 | 已创建 | 已成功创建具有资源实例唯一标识符的对象。 
+
+
+| 202 | 已接受 | 请求已被接受，并且已创建后台作业来执行该请求。 
+
+
+| 204 | 没有内容 | 尽管没有返回任何内容，但请求成功。 
+
+
+| 400 | 错误的请求 | 请求输入无法识别或不合适。 
+
+
+| 401 | 未经授权 | 用户未获得授权，必须进行身份验证。 
+
+
+| 403 | 禁止 | 由于授权错误，访问被拒绝。 
+
+
+| 404 | 未找到 | 请求中引用的资源不存在。 
+
+
+| 409 | 冲突 | 尝试创建对象失败，因为该对象已存在。 
+
+
+| 500 | 内部错误 | 服务器发生一般内部错误。 
+|===
+
+
+== 身份验证
+
+使用访问令牌对 REST API 进行客户端身份验证。令牌和身份验证过程的相关特征包括：
+
+* 客户端必须使用ONTAP工具管理器管理员凭据（用户名和密码）请求令牌。
+* 令牌的格式为 JSON Web 令牌 (JWT)。
+* 每个令牌在 60 分钟后过期。
+* 来自客户端的 API 请求必须包含令牌 `x-auth`请求标头。
+
+
+参考link:../automation/first-call.html["您的第一个 REST API 调用"]有关请求和使用访问令牌的示例。
+
+
+
+== 同步和异步请求
+
+大多数 REST API 调用都快速完成，因此同步运行。也就是说，它们在请求完成后返回状态代码（例如 200）。需要更长时间才能完成的请求使用后台作业异步运行。
+
+发出异步运行的 API 调用后，服务器返回 202 HTTP 状态代码。这表明请求已被接受但尚未完成。您可以查询后台作业以确定其状态，包括成功或失败。
+
+异步处理用于几种类型的长时间运行的操作，包括数据存储和 vVol 操作。有关更多信息，请参阅 Swagger 页面 REST API 的作业管理器类别。

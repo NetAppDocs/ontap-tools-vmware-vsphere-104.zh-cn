@@ -1,0 +1,59 @@
+---
+permalink: concepts/rbac-vcenter-environment.html 
+sidebar: sidebar 
+keywords: vcenter, vcenter server, vcenter server rbac, rbac environment 
+summary: VMware vCenter Server 提供了 RBAC 功能，使您能够控制对 vSphere 对象的访问。它是vCenter集中身份验证和授权安全服务的重要组成部分。 
+---
+= ONTAP tools for VMware vSphere的 vCenter Server RBAC 环境
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+VMware vCenter Server 提供了 RBAC 功能，使您能够控制对 vSphere 对象的访问。它是vCenter集中身份验证和授权安全服务的重要组成部分。
+
+
+
+== vCenter Server 权限的图示
+
+权限是 vCenter Server 环境中强制执行访问控制的基础。它适用于具有权限定义中包含的用户或组的 vSphere 对象。下图提供了 vCenter 权限的高级说明。
+
+image:vc-permission.png["vCenter 权限"]
+
+
+
+== vCenter Server 权限的组成部分
+
+vCenter Server 权限是创建权限时绑定在一起的几个组件的包。
+
+
+
+=== vSphere 对象
+
+权限与 vSphere 对象相关联，例如 vCenter Server、ESXi 主机、虚拟机、数据存储区、数据中心和文件夹。根据对象分配的权限，vCenter Server 确定每个用户或组可以对该对象执行哪些操作或任务。对于特定于ONTAP tools for VMware vSphere的任务，所有权限均在 vCenter Server 的根或根文件夹级别分配和验证。看link:../concepts/rbac-vcenter-use.html["将 RBAC 与 vCenter 服务器结合使用"]了解更多信息。
+
+
+
+=== Privileges和角色
+
+适用于ONTAP tools for VMware vSphere使用两种类型的 vSphere 权限。为了简化在此环境中使用 RBAC 的工作， ONTAP工具提供了包含所需的本机和自定义权限的角色。特权包括：
+
+* 本机 vCenter Server 权限
++
+这些是 vCenter Server 提供的权限。
+
+* ONTAP工具特定的权限
++
+这些是适用于ONTAP tools for VMware vSphere独有的自定义权限。
+
+
+
+
+
+=== 用户和组
+
+您可以使用 Active Directory 或本地 vCenter Server 实例定义用户和组。结合角色，您可以创建对 vSphere 对象层次结构中对象的权限。该权限根据关联角色中的特权授予访问权限。请注意，角色并非直接分配给单独用户。相反，用户和组通过角色特权获得对对象的访问权限，这是更大的 vCenter Server 权限的一部分。

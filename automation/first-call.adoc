@@ -1,0 +1,89 @@
+---
+sidebar: sidebar 
+permalink: automation/first-call.html 
+keywords: ontap tools for vmware vsphere rest api reference, first rest api call, acquire access token 
+summary: 您可以使用 curl 发出 API 调用来开始使用适用于ONTAP tools for VMware vSphere。 
+---
+= 您的第一个ONTAP tools for VMware vSphere
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可以使用 curl 发出 API 调用来开始使用适用于ONTAP tools for VMware vSphere。
+
+
+
+== 开始之前
+
+您应该查看 curl 示例中所需的信息和参数。
+
+.所需信息
+您需要以下内容：
+
+* ONTAP tools for VMware vSphereIP 地址或 FQDN 以及端口
+* ONTAP工具管理器管理员的凭据（用户名和密码）
+
+
+.参数和变量
+下面介绍的 curl 示例包括 Bash 样式变量。您可以在 Bash 环境中设置这些变量，或者在发出命令之前手动更新它们。如果您设置了变量，shell 将在执行每个命令之前将这些值替换到其中。下表描述了这些变量。
+
+[cols="25,75"]
+|===
+| 变量 | 描述 
+
+
+| $FQDN_IP_端口 | ONTAP工具管理器的完全限定域名或 IP 地址以及端口号。 
+
+
+| $MYUSER | ONTAP工具管理器帐户的用户名。 
+
+
+| 我的密码 | 与ONTAP工具管理器用户名关联的密码。 
+
+
+| $访问令牌 | ONTAP工具管理器颁发的访问令牌。 
+|===
+Linux CLI 上的以下命令和输出说明了如何设置和显示变量：
+
+[listing]
+----
+FQDN_IP_PORT=172.14.31.224:8443
+echo $FQDN_IP
+172.14.31.224:8443
+----
+
+
+== 步骤 1：获取访问令牌
+
+您需要获取访问令牌才能使用 REST API。下面给出了如何请求访问令牌的示例。您应该根据您的环境替换适当的值。
+
+[source, curl]
+----
+curl --request POST \
+--location "https://$FQDN_IP_PORT/virtualization/api/v1/auth/login” \
+--header "Content-Type: application/json" \
+--header "Accept: */*" \
+-d "{"username": "$MYUSER", "password": "$MYPASSWORD"}"
+----
+复制并保存响应中提供的访问令牌。
+
+
+
+== 步骤 2：发出 REST API 调用
+
+获得访问令牌后，您可以使用 curl 发出 REST API 调用。包括第一步获取的访问令牌。
+
+.Curl 示例
+[source, curl]
+----
+curl --request GET \
+--location "https://$FQDN_IP_PORT/virtualization/api/v1/vcenters" \
+--header "Accept: */*" \
+--header "x-auth: $ACCESS_TOKEN"
+----
+JSON 响应包括配置到ONTAP工具管理器的 VMware vCenter 实例列表。

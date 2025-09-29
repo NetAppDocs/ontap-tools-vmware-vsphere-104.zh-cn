@@ -1,0 +1,132 @@
+---
+permalink: deploy/deployment-error-codes.html 
+sidebar: sidebar 
+keywords: upgrade 
+summary: 本页概述了ONTAP tools for VMware vSphere的部署、重新启动和恢复操作的错误代码。 
+---
+= 部署错误代码
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+您可能会在ONTAP tools for VMware vSphere部署、重新启动和恢复操作期间遇到错误代码。错误代码长度为五位数字，其中前两位数字代表遇到问题的脚本，后三位数字代表该脚本内的特定工作流程。
+
+所有错误日志都记录在 ansible-perl-errors.log 文件中，以便于轻松跟踪和解决问题。该日志文件包含错误代码和失败的 Ansible 任务。
+
+
+NOTE: 本页提供的错误代码仅供参考。如果错误仍然存在或没有提到解决方案，请联系支持团队。
+
+下表列出了错误代码和对应的文件名。
+
+|===
+
+
+| *错误代码* | *脚本名称* 
+
+
+| 00 | firstboot-network-config.pl，模式部署 
+
+
+| 01 | firstboot-network-config.pl，模式升级 
+
+
+| 02 | firstboot-输入验证.pl 
+
+
+| 03 | Firstboot-deploy-otv-ng.pl，部署，HA 
+
+
+| 04 | firstboot-deploy-otv-ng.pl，部署，非 HA 
+
+
+| 05 | firstboot-deploy-otv-ng.pl，重启 
+
+
+| 06 | firstboot-deploy-otv-ng.pl，升级，HA 
+
+
+| 07 | firstboot-deploy-otv-ng.pl，升级，非 HA 
+
+
+| 08 | firstboot-otv-recovery.pl 
+
+
+| 09 | 部署后升级.pl 
+|===
+错误代码的最后三位数字表示脚本中特定的工作流错误：
+
+|===
+
+
+| *部署错误代码* | *工作流程* | *解决* 
+
+
+| 049 | 对于网络和验证 perl 脚本也将很快分配它们 | - 
+
+
+| 050 | Ssh 密钥生成失败 | 重新启动主虚拟机 (VM)。 
+
+
+| 053 | 安装 RKE2 失败 | 运行以下命令并重新启动主 VM 或重新部署：sudo rke2-killall.sh（所有 VM）sudo rke2-uninstall.sh（所有 VM）。 
+
+
+| 054 | 设置 kubeconfig 失败 | 重新部署 
+
+
+| 055 | 部署注册表失败 | 如果注册表 pod 存在，请等待 pod 准备就绪，然后重新启动主 VM 或重新部署。 
+
+
+| 059 | KubeVip部署失败 | 确保部署期间提供的 Kubernetes 控制平面的虚拟 IP 地址和ONTAP工具 IP 地址属于同一 VLAN 并且是空闲 IP 地址。如果前面所有点都正确，请重新启动。否则，重新部署。 
+
+
+| 060 | 操作员部署失败 | 重新启动 
+
+
+| 061 | 服务部署失败 | 在 ntv-system 命名空间中执行基本的 Kubernetes 调试，例如获取 pod、获取 rs、获取 svc 等，以获取更多详细信息和错误日志（位于 /var/log/ansible-perl-errors.log 和 /var/log/ansible-run.log）并重新部署。 
+
+
+| 062 | ONTAP工具服务部署失败 | 请参阅 /var/log/ansible-perl-errors.log 中的错误日志以了解更多详细信息并重新部署。 
+
+
+| 065 | Swagger 页面 URL 无法访问 | 重新部署 
+
+
+| 066 | 网关证书的部署后步骤失败 | 执行以下操作来恢复/完成升级：* 启用诊断外壳。  * 运行“sudo perl /home/maint/scripts/post-deploy-upgrade.pl --postDeploy”命令。  * 检查 /var/log/post-deploy-upgrade.log 上的日志。 
+
+
+| 088 | 配置 journald 的日志轮换失败 | 检查虚拟机网络设置是否与托管虚拟机的主机兼容。您可以尝试迁移到另一台主机并重新启动虚拟机。 
+
+
+| 089 | 更改摘要日志轮换配置文件的所有权失败 | 重新启动主虚拟机。 
+
+
+| 096 | 安装动态存储供应器 | - 
+
+
+| 108 | 种子脚本失败 | - 
+|===
+|===
+
+
+| *重启错误代码* | *工作流程* | *解决* 
+
+
+| 067 | 等待 rke2-server 超时。 | - 
+
+
+| 101 | 无法重置维护/控制台用户密码。 | - 
+
+
+| 102 | 重置维护/控制台用户密码时无法删除密码文件。 | - 
+
+
+| 103 | 无法更新保险库中的新维护/控制台用户密码。 | - 
+
+
+| 088 | 配置 journald 的日志轮换失败。 | 检查虚拟机网络设置是否与托管虚拟机的主机兼容。您可以尝试迁移到另一台主机并重新启动虚拟机。 
+
+
+| 089 | 更改摘要日志轮换配置文件的所有权失败。 | 重新启动虚拟机。 
+|===

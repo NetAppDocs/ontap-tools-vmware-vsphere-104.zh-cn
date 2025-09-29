@@ -1,0 +1,48 @@
+---
+permalink: configure/manager-user-interface.html 
+sidebar: sidebar 
+keywords: ontap tools manager, managerui 
+summary: ONTAP工具管理器ONTAP tools for VMware vSphere提供了更多的控制和权力，有助于全面管理设备、租户和存储后端。 
+---
+= ONTAP工具管理器用户界面
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP tools for VMware vSphere是一个多租户系统，可以管理多个 vCenter Server 实例。  ONTAP工具管理器ONTAP tools for VMware vSphere的更多控制。
+
+ONTAP工具管理器可帮助：
+
+* vCenter Server 实例管理 - 将 vCenter Server 实例添加并管理到ONTAP工具。
+* 存储后端管理 - 将ONTAP存储集群添加并管理到ONTAP tools for VMware vSphere，并将其映射到全局已加入的 vCenter Server 实例。
+* 日志包下载 - 收集适用于ONTAP tools for VMware vSphere的日志文件。
+* 证书管理 - 将自签名证书更改为自定义 CA 证书，并更新或刷新 VASA Provider 和ONTAP工具的所有证书。
+* 密码管理 - 重置用户的 OVA 应用程序密码。
+
+
+要访问ONTAP工具管理器，请启动 `\https://<ONTAPtoolsIP>:8443/virtualization/ui/`从浏览器并使用您在部署期间提供的适用于ONTAP tools for VMware vSphere管理员凭据登录。
+
+ONTAP工具管理器概述部分有助于管理设备配置，例如服务管理、节点大小升级和高可用性 (HA) 支持。您还可以监控与节点相关的ONTAP工具的整体信息，例如运行状况、网络详细信息和警报。
+
+image:../media/ontap-tools-manager-overview.png["ONTAP工具管理器仪表板概述"]
+
+|===
+| *卡片* | *描述* 
+
+
+| 家电卡 | 设备卡提供ONTAP工具设备的整体状态。它显示设备配置详细信息和已启用服务的状态。有关ONTAP工具设备的更多信息，请选择“查看详细信息”链接。当编辑设备设置操作作业正在进行时，设备 portlet 会显示该作业的状态和详细信息。 
+
+
+| 警报卡 | 警报卡按类型列出ONTAP工具警报，包括 HA 节点级警报。您可以通过选择计数文本（超链接）来查看警报列表。该链接将引导您进入按所选类型过滤的警报查看页面。 
+
+
+| vCenter | vCenter 卡显示系统中 vCenter 的健康状况。 
+
+
+| 存储后端 | 存储后端卡显示系统中存储后端的健康状态。 
+
+
+| ONTAP工具节点卡 | ONTAP工具节点卡显示节点列表，包括节点名称、节点虚拟机名称、状态以及所有网络相关数据。您可以选择“查看详细信息”来查看与所选节点相关的其他详细信息。 [注意] 在非 HA 设置中，仅显示一个节点。在 HA 设置中，显示了三个节点。 
+|===
