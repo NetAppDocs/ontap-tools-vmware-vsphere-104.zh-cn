@@ -14,7 +14,7 @@ summary: 删除ONTAP tools for VMware vSphere后，您应该清理部署期间�
 当您使用专用ONTAP集群为 VMware 部署的ONTAP工具时，它会创建许多未使用的FlexVol卷。删除ONTAP tools for VMware vSphere后，您应该删除FlexVol卷以避免可能对性能造成影响。
 
 .步骤
-. 从第一个节点虚拟机确定ONTAP tools for VMware vSphere。
+. 从ONTAP工具管理节点 VM 确定ONTAP tools for VMware vSphere部署类型。
 +
 _cat /opt/netapp/meta/ansible_vars.yaml | grep -i 协议_
 

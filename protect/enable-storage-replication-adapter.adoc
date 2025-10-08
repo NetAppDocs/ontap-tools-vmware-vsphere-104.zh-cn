@@ -27,3 +27,6 @@ ONTAP tools for VMware vSphere提供了启用 SRA 功能来配置灾难恢复的
 . 将 SRA 插件的 _.tar.gz_ 安装程序上传到 VMware Live Site Recovery。
 . 重新扫描适配器以验证 VMware Live Site Recovery 存储复制适配器页面上的详细信息是否已更新。
 
+
+.相关信息
+https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-nfs-vlsr.html#scenario-overview["使用 VMware Site Recovery Manager 配置 NFS 数据存储区的灾难恢复"]
