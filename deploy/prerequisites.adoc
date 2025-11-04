@@ -84,85 +84,74 @@ https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src
 
 == 端口要求
 
-下表概述了NetApp使用的网络端口及其用途。请确保这些端口处于开放状态且可访问，以保证系统正常运行和通信。请确保已完成必要的网络配置，以允许这些端口上的流量，从而使相关服务正常运行。根据您的安全策略，您可能需要配置防火墙或其他安全设备，以允许此类流量在您的网络中传输。
+下表概述了NetApp使用的网络端口及其用途。端口分为三种类型：
+
+* 外部端口：这些端口可以从 Kubernetes 集群或节点外部访问。它们允许服务与外部网络或用户通信，从而实现与集群环境之外的系统集成。
+* 节点间端口：这些端口允许 Kubernetes 集群内的节点之间进行通信。它们是集群任务（例如数据共享和协同工作）所必需的。对于单节点部署，节点间端口仅在节点内部使用，不需要外部访问。节点间端口可以接受来自集群外部的流量。使用防火墙规则阻止节点间端口访问互联网。
+* 内部端口：这些端口使用 ClusterIP 地址在 Kubernetes 集群内部进行通信。它们不会对外暴露，因此无需添加到防火墙规则中。
+
+
+
+NOTE: 确保所有ONTAP工具节点位于同一子网，以保持彼此之间不间断的通信。
+
 
 |===
+| *服务/组件名称* | *港口* | *协议* | *端口类型* | *描述* 
 
 
-| *港口* | *协议* | *描述* 
+| ntv-gateway-svc (LB) | 443、8443 | TCP | 外部 | 用于 VASA 提供商服务的传入通信的直通端口。VASA 提供程序自签名证书和自定义 CA 证书托管在此端口上。 
 
 
-| 8143 | TCP | ONTAP工具的 HTTP/HTTPS 连接。 
+| SSH | 22 | TCP | 外部 | 用于远程服务器登录和命令执行的安全外壳协议 (Secure Shell)。 
 
 
-| 8043 | TCP | ONTAP工具的 HTTP/HTTPS 连接。 
+| rke2 服务器 | 9345 | TCP | 节点间 | RKE2 监管 API（仅限受信任网络）。 
 
 
-| 9060 | TCP | ONTAP工具的 HTTP/HTTPS 连接。 
+| kube-apiserver | 6443 | TCP | 节点间 | Kubernetes API 服务器端口（仅限受信任的网络）。 
 
 
-| 22 | TCP | Ansible 在集群配置期间使用此 SSH 端口进行通信。此端口是更改维护用户密码、状态消息等功能所必需的，并且在 HA 配置的情况下更新所有三个节点上的值。 
+| rpcbind/端口映射器 | 111 | TCP/UDP | 节点间 | 用于服务间的 RPC 通信。 
 
 
-| 443 | TCP | 这是 VASA 提供程序服务的传入通信的直通端口。  VASA 提供程序自签名证书和自定义 CA 证书托管在此端口上。 
+| coredns（DNS） | 53 | TCP/UDP | 节点间 | 集群内用于名称解析的域名系统 (DNS) 服务。 
 
 
-| 8443 | TCP | 该端口通过 swagger 和 Manager 用户界面应用程序托管 API 文档。 
+| NTP | 123 | UDP | 节点间 | 网络时间协议（NTP）用于时间同步。 
 
 
-| 2379 | TCP | 这是客户端请求的默认端口，例如获取、放置、删除或监视 etcd 键值存储中的键。 
+| etcd | 2379、2380、2381 | TCP | 节点间 | 用于存储集群数据的键值存储。 
 
 
-| 2380 | TCP | 这是 etcd 集群的服务器到服务器通信的默认端口，用于 etcd 依赖的 raft 共识算法来实现数据复制和一致性。 
+| kube-vip | 2112 | TCP | 节点间 | Kubernetes API 服务器端口。 
 
 
-| 7472 | TCP/UDP | 这是 prometheus 指标服务端口。 
+| kubelet | 10248、10250 | TCP | 节点间 | Kubernetes 组件 
 
 
-| 7946 | TCP/UDP | 该端口用于docker的容器网络发现。 
+| kube-controller | 10257 | TCP | 节点间 | Kubernetes 组件 
 
 
-| 9083 | TCP | 此端口是 VASA Provider 服务内部使用的服务端口。 
+| 云控制器 | 10258 | TCP | 节点间 | Kubernetes 组件 
 
 
-| 1162 | UDP | 这是 SNMP 陷阱数据包端口。 
+| kube-scheduler | 10259 | TCP | 节点间 | Kubernetes 组件 
 
 
-| 6443 | TCP | 来源：RKE2 代理节点。目的地：REK2 服务器节点。描述：Kubernetes API 
+| kube-proxy | 10249、10256 | TCP | 节点间 | Kubernetes 组件 
 
 
-| 9345 | TCP | 来源：RKE2 代理节点。目的地：REK2 服务器节点。描述：REK2 主管 API 
+| 加州节点 | 9091、9099 | TCP | 节点间 | Calico 网络组件。 
 
 
-| 8472 | TCP+UDP | 当使用 flannel VXLAN 时，所有节点都需要能够通过 UDP 端口 8472 访问其他节点。来源：所有 RKE2 节点。目的地：所有 REK2 节点。描述：带有 VXLAN 的 Canal CNI 
+| containerd | 10010 | TCP | 节点间 | 容器守护进程服务。 
 
 
-| 10250 | TCP | 来源：所有 RKE2 节点。目的地：所有 REK2 节点。描述：Kubelet 指标 
-
-
-| 30000-32767 | TCP | 来源：所有 RKE2 节点。目的地：所有 REK2 节点。描述：NodePort 端口范围 
-
-
-| 123 | TCP | Ntpd 使用此端口来执行 NTP 服务器的验证。 
-
-
-| 137-139 | TCP/UDP | SMB/Windows 共享数据包。 
-
-
-| 6789 | TCP | Ceph 监视器（MON） 
-
-
-| 3300 | TCP | Ceph 监视器（MON） 
-
-
-| 6800-7300 | TCP | Ceph 管理器、OSD 和文件系统 (MDS)。 
-
-
-| 80 | TCP | Ceph RADOS 网关 (RGW) 
-
-
-| 9080 | TCP | VP HTTP/HTTPS 连接（对于 IPv4 仅来自 127.0.0.0/8 或对于 IPv6 仅来自 ::1/128）。 
+| VXLAN（法兰绒） | 8472 | UDP | 节点间 | 用于 pod 通信的覆盖网络。 
 |===
+
+NOTE: 对于高可用性部署，请确保所有节点之间都已打开 UDP 端口 8472。该端口支持跨节点的 pod 间通信；阻塞该端口将中断节点间网络连接。
+
 
 
 == ONTAP tools for VMware vSphere的配置限制

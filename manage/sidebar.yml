@@ -14,6 +14,8 @@ entries:
   url: "/manage/enable-services.html"
 - title: 更改ONTAP tools for VMware vSphere
   url: "/manage/edit-appliance-settings.html"
+- title: 添加新的 VMware vSphere 主机
+  url: "/manage/add-vsphere-host.html"
 - title: 管理数据存储库
   entries:
   - title: 挂载 NFS 和 VMFS 数据存储

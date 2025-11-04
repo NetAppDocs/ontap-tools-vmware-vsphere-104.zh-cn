@@ -13,6 +13,9 @@ summary: 安装数据存储可为其他主机提供存储访问。将主机添�
 [role="lead"]
 安装数据存储可为其他主机提供存储访问。将主机添加到 VMware 环境后，您可以在其他主机上挂载数据存储区。
 
+
+NOTE: 当您使用以下方式添加新的 ESXi 主机时： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["将 ESX 主机添加到 vSphere 集群工作流程"]等待计划的主机发现完成，然后它才会出现在ONTAP工具中。或者，您可以从NetApp ONTAP工具概览屏幕手动运行发现。
+
 .关于此任务
 * 根据 vSphere 客户端版本和所选数据存储区的类型，某些右键单击操作会被禁用或不可用。
 +
@@ -32,3 +35,6 @@ summary: 安装数据存储可为其他主机提供存储访问。将主机添�
 
 .下一步是什么？
 您可以在最近任务面板中跟踪进度。
+
+.相关主题
+link:../manage/add-vsphere-host.html["添加新的 VMware vSphere 主机"]

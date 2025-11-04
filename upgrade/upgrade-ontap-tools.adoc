@@ -108,7 +108,7 @@ summary: HA 和非 HA 部署均支持升级。
 . 选择 ISO 文件并选择 *OK*。选择 *CD/DVD 驱动器* 字段上的已连接复选框。image:../media/primaryvm-edit-settings.png["编辑设置"]
 . 从 vCenter Server 打开ONTAP工具控制台。
 . 以维护用户身份登录。
-. 输入*3*选择系统配置菜单。
+. 输入*2*选择系统配置菜单。
 . 输入*7*选择升级选项。
 . 升级时，会自动执行以下操作：
 +

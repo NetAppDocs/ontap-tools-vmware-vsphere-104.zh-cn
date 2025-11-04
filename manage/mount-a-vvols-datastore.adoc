@@ -13,6 +13,9 @@ summary: '您可以使用“挂载vVols数据存储”对话框将 VMware 虚拟
 [role="lead"]
 您可以将 VMware 虚拟卷 (vVols) 数据存储挂载到一个或多个其他主机，以便为其他主机提供存储访问。您只能通过 API 卸载vVols数据存储。
 
+
+NOTE: 当您使用以下方式添加新的 ESXi 主机时： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["将 ESX 主机添加到 vSphere 集群工作流程"]等待计划的主机发现完成，然后它才会出现在ONTAP工具中。或者，您可以从NetApp ONTAP工具概览屏幕手动运行发现。
+
 .步骤
 . 从 vSphere Client 主页中，选择“主机和集群”。
 . 在导航窗格中，选择包含数据存储区的数据中心。
@@ -21,3 +24,6 @@ summary: '您可以使用“挂载vVols数据存储”对话框将 VMware 虚拟
 
 
 您可以在最近任务面板中跟踪进度。
+
+.相关主题
+link:../manage/add-vsphere-host.html["添加新的 VMware vSphere 主机"]

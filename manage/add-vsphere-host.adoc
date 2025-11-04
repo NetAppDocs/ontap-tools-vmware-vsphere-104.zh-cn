@@ -1,0 +1,27 @@
+---
+permalink: manage/add-vsphere-host.html 
+sidebar: sidebar 
+keywords:  
+summary: 将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere中。 
+---
+= 添加新的 VMware vSphere 主机
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere，以管理和保护主机上的数据存储。
+
+.步骤
+. 按照页面上的工作流程，将主机添加到 VMware vSphere 集群： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["如何使用快速入门工作流程将 ESX 主机添加到 vSphere 集群"]
+. 添加主机后，转到ONTAP工具主菜单，然后在概览面板中选择“发现”。等待调查过程完成。或者，您可以等待计划的主机发现完成。
+
+
+.结果
+现在， ONTAP tools for VMware vSphere可以发现并管理新的主机。您可以继续在新主机上管理数据存储。
+
+.相关主题
+* link:../manage/mount-a-vvols-datastore.html["挂载vVols数据存储"]在新主机上。
+* link:../manage/mount-datastores-on-host.html["挂载 NFS 和 VMFS 数据存储"]在新主机上。
+
