@@ -103,7 +103,13 @@ summary: HA 和非 HA 部署均支持升级。
 
 .步骤
 . 将ONTAP tools for VMware vSphere上传到内容库。
-. 在主 VM 页面中，选择 *操作* > *编辑设置*
+. 在主 VM 页面中，选择“操作”>“编辑设置”。要确定主虚拟机名称：
++
+.. 在任意节点上启用诊断 shell
+.. 运行以下命令：
+`grep sourceHost /opt/netapp/meta/ansible_vars.yaml`
+
+
 . 在编辑设置窗口的*CD/DVD 驱动器*字段下选择内容库 ISO 文件。
 . 选择 ISO 文件并选择 *OK*。选择 *CD/DVD 驱动器* 字段上的已连接复选框。image:../media/primaryvm-edit-settings.png["编辑设置"]
 . 从 vCenter Server 打开ONTAP工具控制台。

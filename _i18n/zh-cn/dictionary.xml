@@ -1775,14 +1775,8 @@
   <block id="9f147a250dd9a5cd9d9745eb3f5f7668" category="paragraph">更新AutoSupport代理 URL，以确保在使用代理服务器进行网络访问控制或安全措施的情况下AutoSupport功能正常运行。它允许AutoSupport数据通过适当的代理进行路由，从而实现安全传输和合规性。</block>
   <block id="d49d8a5effc0a522fa72d0ff457066df" category="list-text">输入有效的*代理 URL*并保存更改。</block>
   <block id="eb587ff6958c1e65b721306af8fa8e3b" category="paragraph">如果您禁用AutoSupport，代理 URL 也会被禁用。</block>
-  <block id="a6f65a806180d1ff3c8d5e553e634e9d" category="summary">您可以使用维护控制台更新 vCenter Server 和ONTAP凭据。</block>
-  <block id="f72e000ebb4c7bedf651a46e595f1371" category="doc">更新 vCenter Server 和ONTAP凭据</block>
-  <block id="7ac19aa441feceb73519a5108d4cc366" category="paragraph">您可以使用维护控制台更新 vCenter Server 实例和ONTAP凭据。</block>
   <block id="21a56b485fb6cd9f7c9cc8f514440950" category="paragraph">您需要拥有维护用户登录凭证。</block>
-  <block id="1f8bb3d639d4544a4979b060d7cccc88" category="paragraph">如果您在部署后更改了 vCenter Server、 ONTAP或 Data LIF 的凭据，则需要使用此过程更新凭据。</block>
   <block id="cea5a13834803a12adaeb249165351df" category="list-text">进入<block ref="c81e728d9d4c2f636f067f89cc14862c" prefix=" " category="inline-code"></block>选择系统配置菜单。</block>
-  <block id="86ce6e9c3af571980099ca308cd245e3" category="list-text">进入<block ref="45c48cce2e2d7fbdea1afc51c7c6ad26" prefix=" " category="inline-code"></block>更改ONTAP凭据。</block>
-  <block id="207c00a73dde0270cc0fbc7ce9c5f2fd" category="list-text">进入<block ref="d3d9446802a44259755d38e6d163e820" prefix=" " category="inline-code"></block>更改 vCenter 凭据。</block>
   <block id="d3cd4bffc1abc46e60337f8438f457b9" category="summary">存储视图显示虚拟机创建的vVols列表。</block>
   <block id="f6607063532d19e10b746de0f6108f15" category="doc">虚拟机存储视图</block>
   <block id="9d850336a156831a9095fd981a1a0c23" category="admonition">此视图适用于至少安装了适用于 VMware vSphere 管理的vVols数据存储相关磁盘的 ONTAP tools for VMware vSphere的虚拟机。</block>
@@ -2284,7 +2278,6 @@
   <block id="cd457aeee08a9f6476660a1f15284160" category="paragraph">添加硬盘后，更新虚拟机的相应配置的资源并重新启动主虚拟机。</block>
   <block id="82c4bde04ac809c6d15f232949e072ce" category="paragraph">将创建一个新的 HDD。动态存储配置器使用此 HDD 来生成或复制卷。</block>
   <block id="b06f0e274f6c746f0d30521b5c7f392e" category="list-text">将ONTAP tools for VMware vSphere上传到内容库。</block>
-  <block id="dd5382558ec4a47dfbc203fb25698772" category="list-text">在主 VM 页面中，选择 *操作* &gt; *编辑设置*</block>
   <block id="ef9e53e40d78d57abe78283a3603eb4e" category="list-text">在编辑设置窗口的*CD/DVD 驱动器*字段下选择内容库 ISO 文件。</block>
   <block id="54a029420d74c0dff69239155cf510b5" category="inline-image-macro">编辑设置</block>
   <block id="2c2d3019834934bb25449edddc396321" category="list-text">选择 ISO 文件并选择 *OK*。选择 *CD/DVD 驱动器* 字段上的已连接复选框。<block ref="af57a506b85774ef3a9f849e2b26e258" category="inline-image-macro-rx" type="image"></block></block>
@@ -2433,4 +2426,12 @@
   <block id="83c2a6ded9467f8048f9a53cabd2e783" category="paragraph-title">相关主题</block>
   <block id="403e2c858b37daa43171ef37b71e6640" category="paragraph"><block ref="403e2c858b37daa43171ef37b71e6640" category="inline-link-macro-rx"></block></block>
   <block id="17e484c8a86cb4a7c9192fe5d0393445" category="list-text">输入*2*选择系统配置菜单。</block>
+  <block id="f59d6f6c2fbe5659bab55bb335b17871" category="summary">您可以使用维护控制台更新 vCenter Server 凭据。</block>
+  <block id="d546c3915b2e0bc231d2bd0456f2d736" category="doc">更新 vCenter Server 凭据</block>
+  <block id="6e73e8087488ddc10c72aeec0f27cc93" category="paragraph">您可以使用维护控制台更新 vCenter Server 实例凭据。</block>
+  <block id="1f2db2b2d242479839579d1cc7f9d26e" category="paragraph">如果您在部署后更改了 vCenter Server 的凭据，则需要使用此过程更新凭据。</block>
+  <block id="a38dbe6982c223d82e53b7d0feab69ce" category="list-text">进入<block ref="c9f0f895fb98ab9159f51fd0297e236d" prefix=" " category="inline-code"></block> 更改 vCenter 凭据。</block>
+  <block id="a928a1b805644ea87a643f7f8d60a477" category="list-text">在主 VM 页面中，选择“操作”&gt;“编辑设置”。要确定主虚拟机名称：</block>
+  <block id="75a86edd37c9b2122be450b28fa09149" category="list-text">在任意节点上启用诊断 shell</block>
+  <block id="e016d50ae26af4214e6a864c1c2c8db5" category="list-text">运行以下命令：<block ref="1ebe86b64a17c55ae52f4488cffae75f" prefix=" " category="inline-code"></block></block>
 </blocks>
