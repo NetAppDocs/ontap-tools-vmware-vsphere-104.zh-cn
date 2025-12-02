@@ -10,6 +10,9 @@ summary: 迁移存储数据时，使用 REST API 手动加入存储后端。迁�
 :imagesdir: ../media/
 
 
+[role="lead"]
+按照本节中的步骤，将 VASA 提供程序从ONTAP tools for VMware vSphere迁移到ONTAP tools for VMware vSphere，并更新 VMware Live Site Recovery 设备上的存储复制适配器 (SRA)。
+
 
 
 == 迁移 VASA 提供程序的步骤
@@ -22,15 +25,33 @@ iptables -I INPUT 1 -p tcp --dport 1527 -j ACCEPT
 ----
 . ONTAP tools for VMware vSphere的 OVA。
 . 添加要迁移到ONTAP tools for VMware vSphere的 vCenter Server 实例。请参阅link:../configure/add-vcenter.html["添加 vCenter Server 实例"]了解更多信息。
-. 通过 vCenter 服务器 API 在本地为ONTAP工具插件装载存储后端。
-. 从 Swagger 或 Postman 发出以下 API 进行迁移。
+. 通过 vCenter Server API 将存储后端本地集成到ONTAP工具插件中。请参阅link:../configure/add-storage-backend.html["使用 vSphere 客户端界面添加存储后端"]了解更多信息。
+. 获取访问令牌以验证 REST API 请求。请使用以下示例，并将变量替换为特定于您环境的值。
 +
-curl -X POST  `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/{vcguid}/migration-jobs``
++
+
+
+
+[listing]
+----
+curl --request POST \
+--location "https://$FQDN_IP_PORT/virtualization/api/v1/auth/login” \
+--header "Content-Type: application/json" \
+--header "Accept: */*" \
+-d "{"username": "$MYUSER", "password": "$MYPASSWORD"}"
+----
+复制并保存响应中返回的访问令牌。。从 Swagger 或 Postman 发出以下 API 进行迁移。
 
 +
-您可以通过此 URL 访问 Swagger：  `\https://$FQDN_IP_PORT/', for example: `\https://10.67.25.33:8443` 。
+
+[listing]
+----
+curl -X POST `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/{vcguid}/migration-jobs`
+----
+您可以通过以下网址访问 Swagger： `\https://$FQDN_IP_PORT/` ， 例如： `\https://10.67.25.33:8443/` 。
 
 +
+
 []
 ====
 HTTP 方法和端点
@@ -51,38 +72,72 @@ HTTP 方法和端点
 
 *Curl 示例*
 
-curl -X POST'https://<OTV-NG-IP>:8443/virtualization/api/v1/vcenters/<vcguid>/migration-jobs'[] \ --header 'x-auth：<auth_token>' \ --header 'Content-Type：application/json' \ --data '{“otv_ip”：“xx.xx.xx.xx”，“vasa_provider_credentials”：{“username”：“xxxxx”，“password”：“******”}，“database_password”：“******”}'
-
+[listing]
+----
+curl -X POST 'https://<OTV-NG-IP>:8443/virtualization/api/v1/vcenters/<vcguid>/migration-jobs' \
+--header 'x-auth: <auth_token>' \
+--header 'Content-Type: application/json' \
+--data '{
+  "otv_ip": "xx.xx.xx.xx",
+  "vasa_provider_credentials": {
+    "username": "xxxxx",
+    "password": "******"
+  },
+  "database_password": "******"
+}'
+----
 其他版本迁移的请求主体：
 
-{ “otv_ip”：“xx.xx.xx.xx”， “vasa_provider_credentials”：{ “用户名”：“xxxxx”， “密码”：“*******” } }
-
+[listing]
+----
+{
+  "otv_ip": "xx.xx.xx.xx",
+  "vasa_provider_credentials": {
+    "username": "xxxxx",
+    "password": "*******"
+  }
+}
+----
 JSON 输出示例
 
-返回一个作业对象。您应该保存作业标识符以便在下一步中使用它。
+系统返回一个作业对象。保存作业标识符以便在下一步中使用。
 
-{ “id”：123，“migration_id”：“d50073ce-35b4-4c51-9d2e-4ce66f802c35”，“status”：“正在运行”}
-
+[listing]
+----
+{
+  "id": 123,
+  "migration_id": "d50073ce-35b4-4c51-9d2e-4ce66f802c35",
+  "status": "running"
+}
+----
 ====
 . 在 Swagger 中使用以下 URI 检查状态：
 +
 [listing]
 ----
-curl `\https://xx.xx.xx.xxx:8443/virtualization/api/jobmanager/v2/jobs/<JobID>?includeSubJobsAndTasks=true`
+curl `\https://xx.xx.xx.xxx:8443/virtualization/api/jobmanager/v2/jobs/<migration_id>?includeSubJobsAndTasks=true`
 ----
 +
-完成工作后，查看迁移报告。该报告包含在工作数据中，可以从工作响应中访问。
+作业完成后，请查看作业响应中的迁移报告。
 
-. 将ONTAP tools for VMware vSphere添加到 vCenter Server 并link:../configure/registration-process.html["注册 VASA 提供程序"]使用适用于ONTAP tools for VMware vSphere。
+. 将ONTAP tools for VMware vSphere添加到 vCenter Server。
+. 使用ONTAP tools for VMware vSphere 的VASA 提供程序。有关说明，请参阅link:../configure/registration-process.html["注册 VASA 提供程序"]。
+. 注册后，请在 vSphere Client 的“存储提供程序”下验证 VASA 提供程序的名称及其状态。VASA 提供商应在线显示，确认注册成功。
 . link:../manage/enable-services.html["启用 VASA Provider"]ONTAP tools for VMware vSphere上的服务。
-. 从维护控制台停止ONTAP tools for VMware vSphere。
+. 请按照以下步骤停止ONTAP tools for VMware vSphere：
 +
-请勿删除 VASA 提供程序。
-
+.. 在ONTAP工具 9.x 中，打开 Web 控制台。
+.. 访问维护控制台。
+.. 进入 `1`选择“应用程序配置”菜单。
+.. 进入 `5`停止 VASA Provider 和 SRA 服务。
+.. 在 vSphere Client 中，导航至“清单”>“存储提供程序”。
+.. 从存储后端选择ONTAP工具 9.x VASA 提供程序，然后单击“删除”。
 +
 旧 VASA 提供程序停止后，vCenter Server 将故障转移到ONTAP tools for VMware vSphere。所有数据存储库和虚拟机均可访问，并由适用于ONTAP tools for VMware vSphere提供服务。
 
-. 仅当触发数据存储发现作业后，从ONTAP tools for VMware vSphere迁移的 NFS 和 VMFS 数据存储才会显示在ONTAP tools for VMware vSphere中，这可能需要长达 30 分钟才能完成。验证数据存储区是否在 VMware vSphere 插件用户界面页面的ONTAP工具概览页面上可见。
+
+
+. 迁移后的 NFS 和 VMFS 数据存储会在数据存储发现作业完成后出现在ONTAP tools for VMware vSphere中，该作业可能需要长达 30 分钟。在概览页面上检查它们的可见性。
 . 使用 Swagger 或 Postman 中的以下 API 执行补丁迁移：
 +
 []
@@ -103,49 +158,64 @@ HTTP 方法和端点
 
 异步
 
+请在 Swagger 中使用以下 URI：
+
+[listing]
+----
+curl  -X PATCH  `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/<vcenter_id>/migration-jobs/<migration_id>`
+----
 *Curl 示例*
 
-curl -X 补丁 `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/56d373bd-4163-44f9-a872-9adabb008ca9/migration-jobs/84dr73bd-9173-65r7-w345-8ufdbb887d43`
-
+[listing]
+----
+curl  -X PATCH  `\https://xx.xx.xx.xx:8443/virtualization/api/v1/vcenters/56d373bd-4163-44f9-a872-9adabb008ca9/migration-jobs/d50073ce-35b4-4c51-9d2e-4ce66f802c35`
+----
 JSON 输出示例
 
 返回一个作业对象。您应该保存作业标识符以便在下一步中使用它。
 
-{ “id”：123，“migration_id”：“d50073ce-35b4-4c51-9d2e-4ce66f802c35”，“status”：“正在运行”}
-
+[listing]
+----
+{
+  "id": 123,
+  "migration_id": "d50073ce-35b4-4c51-9d2e-4ce66f802c35",
+  "status": "running"
+}
+----
+====
++
 修补操作请求体为空。
+
+
 
 
 NOTE: UUID 是响应迁移后 API 返回的迁移 UUID。
 
 运行补丁迁移API后，所有虚拟机都符合存储策略。
 
-====
-
-
 .下一步
 完成迁移并将ONTAP Tools 10.4 注册到 vCenter Server 后，请按照以下步骤操作：
 
-* 等待*发现*完成，证书将在所有主机上自动刷新。
-* 启动数据存储区和虚拟机操作之前，请留出足够的时间。所需的等待时间因配置中的主机、数据存储区和虚拟机的数量而异。等待失败可能会导致间歇性操作失败。
+* 等待*发现*完成，系统会自动在所有主机上刷新证书。
+* 等待数据存储区和虚拟机操作开始。等待时间取决于主机、数据存储和虚拟机的数量。如果您不等待，您可能会偶尔看到失败。
 
 
 升级后，如果虚拟机的合规性状态已过时，请使用以下步骤重新应用存储策略：
 
-. 导航到数据存储并选择*摘要*>*虚拟机存储策略*。
+. 转到数据存储并选择*摘要*>*虚拟机存储策略*。
 +
-*虚拟机存储策略合规性*下的合规性状态显示为*过时*。
+系统显示*虚拟机存储策略合规性*下的合规性状态为*过时*。
 
-. 选择存储虚拟机策略和相应的虚拟机
-. 选择“*应用*”
+. 选择存储虚拟机策略和相应的虚拟机。
+. 选择*应用*。
 +
-*VM 存储策略合规性* 下的合规性状态现在显示为合规。
+*虚拟机存储策略合规性*下的合规性状态显示为合规。相关信息
+
++
+** link:../concepts/rbac-learn-about.html["了解适用于ONTAP tools for VMware vSphere"]
+** link:../upgrade/upgrade-ontap-tools.html["将适用于ONTAP tools for VMware vSphere升级到 10.4"]
 
 
-
-.相关信息
-* link:../concepts/rbac-learn-about.html["了解适用于ONTAP tools for VMware vSphere"]
-* link:../upgrade/upgrade-ontap-tools.html["将适用于ONTAP tools for VMware vSphere升级到 10.4"]
 
 
 
