@@ -15,6 +15,7 @@ summary: 在迁移数据中心中现有的虚拟机时，您应该注意一些�
 
 
 
+[[migrate-protected-virtual-machines]]
 == 迁移受保护的虚拟机
 
 您可以将受保护的虚拟机迁移到：
@@ -28,6 +29,7 @@ summary: 在迁移数据中心中现有的虚拟机时，您应该注意一些�
 
 
 
+[[clone-protected-virtual-machines]]
 == 克隆受保护的虚拟机
 
 您可以将受保护的虚拟机克隆到以下内容：
@@ -54,6 +56,7 @@ VMware 目前不支持将虚拟机克隆到 VM 模板。
 
 
 
+[[virtual-machine-snapshots]]
 == 虚拟机快照
 
 目前仅支持没有内存的虚拟机快照。如果虚拟机有带内存的Snapshot，那么该虚拟机就不考虑保护。

@@ -12,6 +12,7 @@ summary: 将数据盘挂载到虚拟机，扩展存储容量。
 
 
 
+[[attach-a-data-disk-to-a-virtual-machine]]
 == 将数据磁盘附加到虚拟机
 
 将数据盘挂载到虚拟机，扩展存储容量。
@@ -29,6 +30,7 @@ summary: 将数据盘挂载到虚拟机，扩展存储容量。
 
 
 
+[[detach-a-data-disk-from-the-virtual-machine]]
 == 从虚拟机中分离数据磁盘
 
 当不再需要虚拟机上附加的数据磁盘时，您可以将其分离。当您将磁盘从虚拟机中分离时，它不会被自动删除；它会保留在ONTAP存储系统上。

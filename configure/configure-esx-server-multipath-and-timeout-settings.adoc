@@ -15,6 +15,7 @@ summary: ONTAP tools for VMware vSphere会检查并设置与NetApp存储系统�
 
 
 
+[[configure-esxi-server-multipath-and-timeout-settings]]
 == 配置 ESXi 服务器多路径和超时设置
 
 ONTAP tools for VMware vSphere会检查并设置与NetApp存储系统配合最佳的 ESXi 主机多路径设置和 HBA 超时设置。
@@ -40,6 +41,7 @@ NOTE: 您可以展开 ESXi 主机来查看当前值。
 
 
 
+[[set-esxi-host-values]]
 == 设置 ESXi 主机值
 
 使用适用ONTAP tools for VMware vSphere，您可以在 ESXi 主机上设置超时和其他值，以确保最佳性能和成功故障转移。适用ONTAP tools for VMware vSphere设置的值基于NetApp内部测试。
@@ -48,6 +50,7 @@ NOTE: 您可以展开 ESXi 主机来查看当前值。
 
 
 
+[[hbacna-adapter-settings]]
 === HBA/CNA 适配器设置
 
 将以下参数设置为默认值：
@@ -60,6 +63,7 @@ NOTE: 您可以展开 ESXi 主机来查看当前值。
 
 
 
+[[mpio-settings]]
 === MPIO 设置
 
 MPIO 设置定义了NetApp存储系统的首选路径。它们确定哪些可用路径是优化的（而不是穿过互连电缆的非优化路径），并将首选路径设置为其中一条路径。
@@ -71,6 +75,7 @@ NOTE: MPIO 设置不适用于 NVMe、NVMe/FC 和 NVMe/TCP 协议。
 
 
 
+[[nfs-settings]]
 === NFS 设置
 
 |===

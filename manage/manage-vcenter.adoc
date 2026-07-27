@@ -15,6 +15,7 @@ vCenter Server 实例是中央管理平台，允许您控制主机、虚拟机�
 
 
 
+[[dissociate-storage-backends-with-the-vcenter-server-instance]]
 == 取消存储后端与 vCenter Server 实例的关联
 
 vCenter Server 列表页面显示相关的存储后端数量。每个 vCenter Server 实例都可以选择与存储后端关联或取消关联。
@@ -29,6 +30,7 @@ vCenter Server 列表页面显示相关的存储后端数量。每个 vCenter Se
 
 
 
+[[modify-a-vcenter-server-instance]]
 == 修改 vCenter Server 实例
 
 按照以下步骤修改 vCenter Server 实例。
@@ -42,6 +44,7 @@ vCenter Server 列表页面显示相关的存储后端数量。每个 vCenter Se
 
 
 
+[[remove-a-vcenter-server-instance]]
 == 移除 vCenter Server 实例
 
 在删除 vCenter Server 之前，您需要删除连接到 vCenter Server 的所有存储后端。

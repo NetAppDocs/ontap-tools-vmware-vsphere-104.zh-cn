@@ -18,6 +18,7 @@ ONTAP tools for VMware vSphere是一套用于虚拟机生命周期管理的工�
 
 
 
+[[rest-web-services-foundation]]
 == REST Web 服务基础
 
 表述性状态转移 (REST) 是一种创建分布式 Web 应用程序的风格，包括 Web 服务 API 的设计。它建立了一套用于公开基于服务器的资源并管理其状态的技术。
@@ -45,6 +46,7 @@ ONTAP tools for VMware vSphere同步执行大多数请求，并在操作完成�
 
 
 
+[[ontap-tools-manager-environment]]
 == ONTAP工具管理器环境
 
 您应该考虑ONTAP工具管理器环境的几个方面。

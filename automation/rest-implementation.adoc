@@ -20,6 +20,7 @@ REST API 包括多个资源类别，例如 vCenter 和 Aggregates。回顾link:.
 
 
 
+[[how-to-access-the-rest-api]]
 == 如何访问 REST API
 
 您可以通过ONTAP工具 IP 地址和端口访问适用ONTAP tools for VMware vSphere。完整的 URL 包含几个部分，包括：
@@ -47,12 +48,14 @@ CAUTION: 以下示例中的 IP 地址和端口值仅用于说明目的。您需�
 
 
 
+[[http-details]]
 == HTTP 详细信息
 
 ONTAP tools for VMware vSphere使用 HTTP 和相关参数对资源实例和集合进行操作。  HTTP 实现的详细信息如下所示。
 
 
 
+[[http-methods]]
 === HTTP 方法
 
 下表列出了 REST API 支持的 HTTP 方法或动词。
@@ -78,6 +81,7 @@ ONTAP tools for VMware vSphere使用 HTTP 和相关参数对资源实例和集�
 |===
 
 
+[[request-and-response-headers]]
 === 请求和响应标头
 
 下表总结了 REST API 使用的最重要的 HTTP 标头。
@@ -97,6 +101,7 @@ ONTAP tools for VMware vSphere使用 HTTP 和相关参数对资源实例和集�
 |===
 
 
+[[http-status-codes]]
 === HTTP 状态代码
 
 REST API 使用的 HTTP 状态代码如下所述。
@@ -137,6 +142,7 @@ REST API 使用的 HTTP 状态代码如下所述。
 |===
 
 
+[[authentication]]
 == 身份验证
 
 使用访问令牌对 REST API 进行客户端身份验证。令牌和身份验证过程的相关特征包括：
@@ -151,6 +157,7 @@ REST API 使用的 HTTP 状态代码如下所述。
 
 
 
+[[synchronous-and-asynchronous-requests]]
 == 同步和异步请求
 
 大多数 REST API 调用都快速完成，因此同步运行。也就是说，它们在请求完成后返回状态代码（例如 200）。需要更长时间才能完成的请求使用后台作业异步运行。

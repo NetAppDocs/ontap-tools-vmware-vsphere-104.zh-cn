@@ -84,7 +84,7 @@ summary: HA 和非 HA 部署均支持升级。
 *在 vCenter 中ONTAP tools for VMware vSphere的快照（如果是 HA 部署则为 3 个 VM，如果是非 HA 部署则为 1 个 VM）*
 
 * 在 vSphere 客户端用户界面中，选择 VM。
-* 转到快照选项卡并选择*拍摄快照*按钮。拍摄虚拟机的静止快照。参考 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/take-snapshots-of-a-virtual-machine.html["拍摄虚拟机快照"^]了解详情。
+* 转到快照选项卡，然后选择*拍摄快照*按钮。拍摄 VM 的静止快照。有关详细信息，请参阅 https://techdocs.broadcom.com/["Broadcom 技术文档"^]。
 
 
 在执行升级之前，请从带有前缀“generate-support-bundle-job”的日志包中删除已完成的 pod。如果支持包生成正在进行中，请等待其完成，然后删除该 pod。

@@ -228,6 +228,7 @@ https://docs.netapp.com/us-en/ontap/san-admin/igroups-concept.html["关于 igrou
 
 
 
+[[export-policies]]
 == 导出策略
 
 导出策略控制对ONTAP tools for VMware vSphere中的 NFS 数据存储库的访问。它们定义哪些客户端可以访问数据存储以及他们拥有什么权限。导出策略在ONTAP系统中创建和管理，并且可以与 NFS 数据存储库关联以实施访问控制。每个导出策略均由指定允许访问的客户端（IP 地址或子网）和授予的权限（只读或读写）的规则组成。

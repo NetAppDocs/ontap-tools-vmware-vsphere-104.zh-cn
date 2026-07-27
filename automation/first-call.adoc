@@ -18,6 +18,7 @@ summary: 您可以使用 curl 发出 API 调用来开始使用适用于ONTAP too
 
 
 
+[[before-you-begin]]
 == 开始之前
 
 您应该查看 curl 示例中所需的信息和参数。
@@ -58,6 +59,7 @@ echo $FQDN_IP
 ----
 
 
+[[step-1-acquire-an-access-token]]
 == 步骤 1：获取访问令牌
 
 您需要获取访问令牌才能使用 REST API。下面给出了如何请求访问令牌的示例。您应该根据您的环境替换适当的值。
@@ -74,6 +76,7 @@ curl --request POST \
 
 
 
+[[step-2-issue-the-rest-api-call]]
 == 步骤 2：发出 REST API 调用
 
 获得访问令牌后，您可以使用 curl 发出 REST API 调用。包括第一步获取的访问令牌。

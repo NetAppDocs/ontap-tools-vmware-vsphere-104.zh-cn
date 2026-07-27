@@ -17,6 +17,7 @@ summary: 在部署ONTAP tools for VMware vSphere之前，您应该熟悉部署�
 
 
 
+[[system-requirements]]
 == 系统要求
 
 * *每个节点的安装包空间要求*
@@ -47,6 +48,7 @@ NOTE: 启用备份后，每个ONTAP工具集群都需要在部署虚拟机的数
 
 
 
+[[minimum-storage-and-application-requirements]]
 == 最低存储和应用要求
 
 |===
@@ -82,6 +84,7 @@ https://imt.netapp.com/matrix/imt.jsp?components=105475;&solution=1777&isHWU&src
 
 
 
+[[port-requirements]]
 == 端口要求
 
 下表概述了NetApp使用的网络端口及其用途。端口分为三种类型：
@@ -154,6 +157,7 @@ NOTE: 对于高可用性部署，请确保所有节点之间都已打开 UDP 端
 
 
 
+[[configuration-limits-to-deploy-ontap-tools-for-vmware-vsphere]]
 == ONTAP tools for VMware vSphere的配置限制
 
 您可以使用下表作为指南来ONTAP tools for VMware vSphere。
@@ -180,6 +184,7 @@ NOTE: 对于高可用性部署，请确保所有节点之间都已打开 UDP 端
 |===
 
 
+[[ontap-tools-for-vmware-vsphere-storage-replication-adapter-sra]]
 == ONTAP tools for VMware vSphere- 存储复制适配器 (SRA)
 
 下表显示了使用适用ONTAP tools for VMware vSphere的每个 VMware Live Site Recovery 实例支持的数量。

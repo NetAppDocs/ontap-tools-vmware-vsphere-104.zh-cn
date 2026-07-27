@@ -50,6 +50,7 @@ NOTE: 您可以在集群或直接在存储虚拟机 (SVM) 级别创建用户。�
 
 
 
+[[svm-aggregate-mapping-requirements]]
 == SVM 聚合映射要求
 
 为了使用 SVM 用户凭据来配置数据存储库，ONTAP tools for VMware vSphere在数据存储库 POST API 中指定的聚合上内部创建卷。 ONTAP不允许使用 SVM 用户凭据在 SVM 上未映射的聚合上创建卷。要解决此问题，您需要使用ONTAP REST API 或 CLI 将 SVM 与聚合映射，如此处所述。
@@ -68,6 +69,7 @@ sti115_vsim_ucs630f_aggr1 vserver show-aggregates                               
 ----
 
 
+[[create-ontap-user-and-role-manually]]
 == 手动创建ONTAP用户和角色
 
 按照本节中的说明手动创建用户和角色，而不使用 JSON 文件。
@@ -103,6 +105,7 @@ sti115_vsim_ucs630f_aggr1 vserver show-aggregates                               
 
 
 
+[[list-of-minimum-privileges-required-for-non-admin-global-scoped-cluster-user]]
 === 非管理员全局范围集群用户所需的最低权限列表
 
 本节列出了未使用用户 JSON 文件创建的非管理员全局范围集群用户所需的最低权限。如果在本地范围内添加了集群，建议使用 JSON 文件创建用户，因为适用ONTAP tools for VMware vSphere需要的不仅仅是在ONTAP上进行配置的读取权限。
@@ -152,6 +155,7 @@ sti115_vsim_ucs630f_aggr1 vserver show-aggregates                               
 |===
 
 
+[[create-ontap-tools-for-vmware-vsphere-ontap-api-based-cluster-scoped-user]]
 === 为基于 VMware vSphere ONTAP API 的集群范围用户创建ONTAP tools for VMware vSphere
 
 
@@ -269,6 +273,7 @@ security login rest-role create -role <role-name> -api /api/storage/availability
 ----
 
 
+[[create-ontap-tools-for-vmware-vsphere-ontap-api-based-svm-scoped-user]]
 === 为基于 VMware vSphere ONTAP API 的 SVM 范围用户创建ONTAP tools for VMware vSphere
 
 要创建具有所有权限的 SVM 范围用户，请运行以下命令：
@@ -383,6 +388,7 @@ security login unlock -username testvpsraall -vserver C1_sti160-cluster
 ----
 
 
+[[upgrade-ontap-tools-for-vmware-vsphere-10-1-user-to-10-3-user]]
 == 将ONTAP tools for VMware vSphere升级到 10.3 用户
 
 对于使用 JSON 文件创建的集群范围用户的ONTAP tools for VMware vSphere，请使用具有用户管理员权限的以下ONTAP CLI 命令升级到 10.3 版本。
@@ -460,6 +466,7 @@ vserver nvme subsystem modify
 ----
 
 
+[[upgrade-ontap-tools-for-vmware-vsphere-10-3-user-to-10-4-user]]
 == 将ONTAP tools for VMware vSphere升级到 10.4 用户
 
 从ONTAP 9.16.1 开始，将ONTAP tools for VMware vSphere升级到 10.4 用户。

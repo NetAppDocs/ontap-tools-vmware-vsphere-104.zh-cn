@@ -14,7 +14,7 @@ summary: 将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere�
 将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere，以管理和保护主机上的数据存储。
 
 .步骤
-. 按照页面上的工作流程，将主机添加到 VMware vSphere 集群： https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/use-quickstart-to-add---host-to-a-cluster.html["如何使用快速入门工作流程将 ESX 主机添加到 vSphere 集群"]
+. 按照以下页面上的工作流程将主机添加到 VMware vSphere 集群： https://techdocs.broadcom.com/["Broadcom 技术文档"^]。
 . 添加主机后，转到ONTAP工具主菜单，然后在概览面板中选择“发现”。等待调查过程完成。或者，您可以等待计划的主机发现完成。
 
 

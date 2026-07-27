@@ -20,6 +20,7 @@ RBAC标准模型由几种复杂度不断增加的实现技术或阶段组成。�
 
 
 
+[[rbac-components]]
 == RBAC 组件
 
 从高层次来看，每个 RBAC 实现通常都包含几个组件。作为定义授权流程的一部分，这些组件以不同的方式绑定在一起。
@@ -41,6 +42,7 @@ _permission_ 是将用户或组与角色绑定到对象的定义。权限对于�
 
 
 
+[[two-rbac-environments]]
 == 两个 RBAC 环境
 
 使用适用于ONTAP tools for VMware vSphere时，需要考虑两种不同的 RBAC 环境。

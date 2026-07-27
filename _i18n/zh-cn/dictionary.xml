@@ -661,7 +661,6 @@
   <block id="5a380329b1b069f97190a31ae38b4637" category="paragraph">有关将 NVMe/FC 协议与 VMware vSphere 8.0 结合使用的更多信息，请参阅<block ref="9c081245622705d0f45a94665f8c99c0" category="inline-link-rx"></block>。</block>
   <block id="636da39a2033c6179a718983c5ce1222" category="inline-link">ONTAP NVMe/FC 主机配置指南</block>
   <block id="81ef6507a13da5635951bc5b533deb59" category="inline-link">TR-4684</block>
-  <block id="bcfcba3d84c95eb110df0649ab05c280" category="paragraph">有关将 NVMe/FC 与 VMware vSphere 7.0 结合使用的更多信息，请参阅<block ref="27816f9f9cf7e278691c8ea8c1dd01dc" category="inline-link-rx"></block>和<block ref="a23d4cc1b9464bb497e26d387d612153" category="inline-link-rx"></block>。</block>
   <block id="bb9abdb0ecdc4e8ad5c61844a27d7f18" category="list-text">选择 VMFS 数据存储类型。</block>
   <block id="54823624f3ec81a67f0dafc81ea0fac9" category="list-text">在“名称和协议”窗格中输入数据存储名称、大小和协议信息。如果选择将新数据存储添加到现有的 VMFS 数据存储群集，请选择高级选项下的数据存储群集选择器。</block>
   <block id="4ae15faab2ddb24edfab9e1f2a21a432" category="list-text">在“存储”窗格中选择存储虚拟机。根据需要在*高级选项*部分提供*自定义启动器组名称*。您可以为数据存储选择一个现有的 igroup，也可以创建一个具有自定义名称的新 igroup。</block>
@@ -1748,8 +1747,6 @@
   <block id="f54e212052df635bcc70d25302fd583e" category="paragraph">卸载ONTAP tools for VMware vSphere将删除工具中的所有数据。</block>
   <block id="82a00fc1c0ae6d437f6d942c64bee898" category="list-text">从ONTAP tools for VMware vSphere中删除或移动所有虚拟机。</block>
   <block id="4ad237c48098cfd8973e73475bded403" category="list-text">要删除虚拟机，请参阅<block ref="c16fb322315174fa2c9720c74541cf45" category="inline-link-rx"></block></block>
-  <block id="59dd8a5d1e9605907341901d2760c087" category="inline-link">如何使用 Storage vMotion 迁移虚拟机</block>
-  <block id="0166be8b4848389c414e9e383efe9111" category="list-text">要将它们移动到非托管数据存储区，请参阅<block ref="920cfb03e9def61d5164fb56cf050dd9" category="inline-link-rx"></block></block>
   <block id="f0833ce92c23eb056dde238669740988" category="list-text"><block ref="523efdef8100699453c6b07ce8f4921c" category="inline-link-macro-rx"></block>在ONTAP tools for VMware vSphere上创建。</block>
   <block id="1d920979688b28c7b10ef84d14436f95" category="list-text">如果您已启用 VASA 提供程序，请在ONTAP工具中选择 *设置* &gt; *VASA 提供程序设置* &gt; *取消注册*，以从所有 vCenter 服务器取消注册 VASA 提供程序。</block>
   <block id="02a713a12e2b216b65a52896d0728a0a" category="list-text">取消所有存储后端与 vCenter Server 实例的关联。请参阅<block ref="8f766e539ddb39a7c07c0c84dded1670" category="inline-link-macro-rx"></block> 。</block>
@@ -2249,8 +2246,6 @@
   <block id="399a5cfe88876e091f96014da7798994" category="list-text">在ONTAP系统管理器用户界面中，按搜索栏中的名称搜索卷，然后选择名称打开该卷。转到快照并添加该卷的快照。</block>
   <block id="a780a238f22a802c24a2182aea27323f" category="paragraph">*在 vCenter 中ONTAP tools for VMware vSphere的快照（如果是 HA 部署则为 3 个 VM，如果是非 HA 部署则为 1 个 VM）*</block>
   <block id="c3710cf1c44da535612cf08236cee98f" category="list-text">在 vSphere 客户端用户界面中，选择 VM。</block>
-  <block id="a6d135b70268e6dae6e2414dc9c7e465" category="inline-link">拍摄虚拟机快照</block>
-  <block id="ed05024ef185f71f630610fa2998b97c" category="list-text">转到快照选项卡并选择*拍摄快照*按钮。拍摄虚拟机的静止快照。参考<block ref="cfbcb02d8f4029fded9e80960c9fdffc" category="inline-link-rx"></block>了解详情。</block>
   <block id="07cf559ee7bbc8841180f1dd59c2917f" category="paragraph">在执行升级之前，请从带有前缀“generate-support-bundle-job”的日志包中删除已完成的 pod。如果支持包生成正在进行中，请等待其完成，然后删除该 pod。</block>
   <block id="7817c7412ad536f5c02bd959934f66d5" category="paragraph">对于任何类型的升级，您都需要添加额外的 100 GB 硬盘驱动器 (HDD)。要添加 HDD，请执行以下任务。</block>
   <block id="11873b433682caa870371cc1631ef90f" category="list-text">选择单节点配置中的虚拟机或 HA 配置中的所有三个虚拟机。</block>
@@ -2396,14 +2391,10 @@
   <block id="622ebf1679f52188783e45799f3b70cb" category="summary">将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere中。</block>
   <block id="5aa6adafd8167a23c389304a0d6e16cb" category="doc">添加新的 VMware vSphere 主机</block>
   <block id="a8626caa71cb3c13de333ded9fdfe5a8" category="paragraph">将新的 VMware vSphere 主机添加到ONTAP tools for VMware vSphere，以管理和保护主机上的数据存储。</block>
-  <block id="020968a073f2c7584ecd5aaec97f88b0" category="inline-link">如何使用快速入门工作流程将 ESX 主机添加到 vSphere 集群</block>
-  <block id="0fdc03dfada440fcb45b31a6944bd23f" category="list-text">按照页面上的工作流程，将主机添加到 VMware vSphere 集群：<block ref="cf7664c28a8bbe5a872742d0c68a4d4b" category="inline-link-rx"></block></block>
   <block id="9764e14a69d1669b765a8ac58a35d864" category="list-text">添加主机后，转到ONTAP工具主菜单，然后在概览面板中选择“发现”。等待调查过程完成。或者，您可以等待计划的主机发现完成。</block>
   <block id="c81c266dd6001708c9f3076ddf21214c" category="paragraph">现在， ONTAP tools for VMware vSphere可以发现并管理新的主机。您可以继续在新主机上管理数据存储。</block>
   <block id="11d81e4c78f6be23d5539c87f4f3a7a7" category="list-text"><block ref="c5978119f323c1ceb37571472aaae169" category="inline-link-macro-rx"></block>在新主机上。</block>
   <block id="063680c82bcd7ffea25b1d4d5c3c6470" category="list-text"><block ref="b5251e50ffdcc6a83e84a63c2a1cd1e4" category="inline-link-macro-rx"></block>在新主机上。</block>
-  <block id="77320a87e6ca763456023daeede0729f" category="inline-link">将 ESX 主机添加到 vSphere 集群工作流程</block>
-  <block id="91d42183cd7455cc3f88c0c77b61174e" category="admonition">当您使用以下方式添加新的 ESXi 主机时：<block ref="4954232b8967f3dbfaee01742ae35b89" category="inline-link-rx"></block>等待计划的主机发现完成，然后它才会出现在ONTAP工具中。或者，您可以从NetApp ONTAP工具概览屏幕手动运行发现。</block>
   <block id="83c2a6ded9467f8048f9a53cabd2e783" category="paragraph-title">相关主题</block>
   <block id="403e2c858b37daa43171ef37b71e6640" category="paragraph"><block ref="403e2c858b37daa43171ef37b71e6640" category="inline-link-macro-rx"></block></block>
   <block id="17e484c8a86cb4a7c9192fe5d0393445" category="list-text">输入*2*选择系统配置菜单。</block>
@@ -2442,4 +2433,10 @@
   <block id="f6b1c86e1a3631a7b24c17cc093409bb" category="list-text">选择存储虚拟机策略和相应的虚拟机。</block>
   <block id="24347b3ddf5a25cc9c27e54ae285ade1" category="list-text">选择*应用*。</block>
   <block id="60bf6f2a83b056efb443713ab85c7cc9" category="paragraph">*虚拟机存储策略合规性*下的合规性状态显示为合规。相关信息</block>
+  <block id="fa708df448b499a880141c721c544f14" category="paragraph">有关在 VMware vSphere 7.0 中使用 NVMe/FC 的更多信息，请参阅<block ref="27816f9f9cf7e278691c8ea8c1dd01dc" category="inline-link-rx"></block>和<block ref="210fbfc4f91114a5e2edc5d409987e41" category="inline-link-rx"></block>。</block>
+  <block id="ae0aa1a81eb18e69d5fc662eaee0efd5" category="inline-link">Broadcom 技术文档</block>
+  <block id="563c4e1f66ab33a447a910bcffd17163" category="list-text">按照以下页面上的工作流程将主机添加到 VMware vSphere 集群：<block ref="94f03a61d7283013b50d8cc8e88c9fd8" category="inline-link-rx"></block>。</block>
+  <block id="0198d63c7755c98e755c41135f163c6e" category="admonition">使用<block ref="94f03a61d7283013b50d8cc8e88c9fd8" category="inline-link-rx"></block>添加新的 ESXi 主机时，请等待计划的主机发现完成后，再查看其是否显示在 ONTAP tools 中。或者，您可以从 NetApp ONTAP tools 概述屏幕手动运行发现。</block>
+  <block id="ea979d9a9cddfcb001c2c7866c21bc62" category="list-text">要将它们移动到非托管数据存储区，请参阅<block ref="94f03a61d7283013b50d8cc8e88c9fd8" category="inline-link-rx"></block>。</block>
+  <block id="04b5525fb0dd70ed32ea9bb7a57dfaf6" category="list-text">转到快照选项卡，然后选择*拍摄快照*按钮。拍摄 VM 的静止快照。有关详细信息，请参阅<block ref="94f03a61d7283013b50d8cc8e88c9fd8" category="inline-link-rx"></block>。</block>
 </blocks>

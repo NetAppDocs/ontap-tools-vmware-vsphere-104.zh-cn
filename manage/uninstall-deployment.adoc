@@ -17,7 +17,7 @@ summary: 按照本节中的说明正常终止ONTAP tools for VMware vSphere。
 . 从ONTAP tools for VMware vSphere中删除或移动所有虚拟机。
 +
 ** 要删除虚拟机，请参阅 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-virtual-machine-administration-guide-8-0/managing-virtual-machinesvsphere-vm-admin/adding-and-removing-virtual-machinesvsphere-vm-admin.html#GUID-376174FE-F936-4BE4-B8C2-48EED42F110B-en["删除并重新注册虚拟机和虚拟机模板"]
-** 要将它们移动到非托管数据存储区，请参阅 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-0/migrate-a-virtual-machine-with-storage-vmotion.html["如何使用 Storage vMotion 迁移虚拟机"]
+** 要将它们移动到非托管数据存储区，请参阅 https://techdocs.broadcom.com/["Broadcom 技术文档"^]。
 
 
 . link:../manage/delete-ds.html["删除数据存储"]在ONTAP tools for VMware vSphere上创建。

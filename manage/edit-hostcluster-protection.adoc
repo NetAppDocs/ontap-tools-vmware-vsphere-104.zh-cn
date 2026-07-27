@@ -21,6 +21,7 @@ summary: 您可以编辑受保护主机集群的SnapMirror关系。您可以添�
 
 
 
+[[monitor-host-cluster-protection]]
 == 监控主机集群保护
 
 使用此过程来监控主机群集保护的状态。您可以监控每个受保护的主机集群及其保护状态、 SnapMirror关系、数据存储和相应的SnapMirror状态。
@@ -36,6 +37,7 @@ summary: 您可以编辑受保护主机集群的SnapMirror关系。您可以添�
 
 
 
+[[add-new-datastores-or-hosts]]
 == 添加新的数据存储或主机
 
 使用此过程来保护新添加的数据存储区或主机。您可以使用 vCenter 本机用户界面将新主机添加到受保护的群集或在主机群集上创建新的数据存储区。
@@ -62,6 +64,7 @@ vCenter 任务已创建，您可以在“最近任务”面板中跟踪进度。
 
 
 
+[[add-a-new-snapmirror-relationship]]
 == 添加新的SnapMirror关系
 
 .步骤
@@ -84,6 +87,7 @@ vCenter 任务已创建，您可以在“最近任务”面板中跟踪进度。
 
 
 
+[[delete-an-existing-snapmirror-relationship]]
 == 删除现有的SnapMirror关系
 
 要删除异步SnapMirror关系，应将辅助站点 SVM 或集群添加为ONTAP tools for VMware vSphere上的存储后端。您无法删除所有SnapMirror关系。当您删除关系时， ONTAP集群上的相应关系也会被删除。删除 AutomatedFailOverDuplex SnapMirror关系时，目标上的数据存储库将取消映射，并且一致性组、LUN、卷和 igroup 将从目标ONTAP集群中删除。
@@ -105,6 +109,7 @@ vCenter 任务已创建，您可以在“最近任务”面板中跟踪进度。
 
 
 
+[[modify-an-existing-snapmirror-relationship]]
 == 修改现有的SnapMirror关系
 
 要修改异步SnapMirror关系，应将辅助站点 SVM 或集群添加为ONTAP tools for VMware vSphere上的存储后端。如果是 AutomatedFailOverDuplex SnapMirror关系，则可以在统一配置的情况下修改主机接近度，在非统一配置的情况下修改主机访问。您不能互换异步和 AutomatedFailOverDuplex 策略类型。您可以设置集群上新发现的主机的接近度或访问权限。

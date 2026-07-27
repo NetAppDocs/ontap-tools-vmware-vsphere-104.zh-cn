@@ -17,6 +17,7 @@ summary: 您应该创建保护组来保护受保护站点上的一组虚拟机�
 
 
 
+[[pair-protected-and-recovery-sites]]
 == 将受保护站点和恢复站点配对
 
 您应该将使用 vSphere Client 创建的受保护站点和恢复站点配对，以启用存储复制适配器 (SRA) 来发现存储系统。
@@ -47,6 +48,7 @@ NOTE: 存储复制适配器 (SRA) 支持具有自动故障转移双工类型的�
 
 
 
+[[configure-protection-groups]]
 == 配置保护组
 
 .开始之前

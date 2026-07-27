@@ -15,6 +15,7 @@ summary: '您应该根据存储复制适配器 (SRA) 的推荐设置配置存储
 
 
 
+[[storage-provider-settings]]
 == 存储提供商设置
 
 您应该在 VMware Live Site Recovery 上为扩展环境设置以下超时值：
@@ -58,6 +59,7 @@ summary: '您应该根据存储复制适配器 (SRA) 的推荐设置配置存储
 
 
 
+[[storage-settings]]
 == 存储设置
 
 当你超时时，增加 `storage.commandTimeout`和 `storage.maxConcurrentCommandCnt`达到更高的价值。
